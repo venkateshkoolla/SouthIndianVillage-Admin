@@ -7,9 +7,8 @@ import { Customer, CustomerStatus } from '../models/customer.interface'
     <div>
     <h3>Customers</h3>
     <div>
-    Active customers : {{ActiveCustomers()}} / {{items.length}}        
-    </div>
-    
+    Active customers : {{ActiveCustomers()}} / {{items?.length}}        
+    </div>    
     </div>
     `
 })

@@ -8,13 +8,17 @@ import {CustomerDashboardComponent} from './containers/customer-dashboard/custom
 import {CustomerCountComponent} from './components/customer-count.component'
 import {CustomerDetailsComponent} from './components/customer-details.component'
 
+// services
+import {CustomerDashboardService} from './customer-dashboard.service'
+
 @NgModule({
 declarations : [CustomerDashboardComponent, 
                 CustomerCountComponent, 
                 CustomerDetailsComponent
                 ],
 imports : [CommonModule],
-exports : [CustomerDashboardComponent]
+exports : [CustomerDashboardComponent],
+providers : [CustomerDashboardService]
 })
 
 export class CustomerDashboardModule {
