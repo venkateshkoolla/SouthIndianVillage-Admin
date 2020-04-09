@@ -5,8 +5,7 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      Welcome to SouthIndianVillage
-      Please visit SouthIndianVilalge.ca
+      <customer-dashboard></customer-dashboard>
     </div>
   `
 })

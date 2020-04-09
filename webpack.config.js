@@ -21,7 +21,7 @@ module.exports = {
     compress: true,
     inline: true,
     hot: true,
-    port: 4000,
+    port: 4001,
     publicPath: '/build/',
     quiet: true,
     historyApiFallback: true,
