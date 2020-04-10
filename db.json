@@ -1,41 +1,52 @@
 {
-    "Customers" : [
-        { "Id" : 1,
-          "FirstName" : "Pawan",
-          "PhoneNumber" : "647-926-8497",
-          "PostalCode" : "L4T1V7",
-          "Address": "",
-          "Status": 1,
-          "Details" :[
-            { "CustomNotes" : "2 Times Non veg per week"},
-            { "CustomNotes": "No Fruits, Instead egg!"}]        
+  "customers": [
+    {
+      "id": 1,
+      "FirstName": "pavan",
+      "PhoneNumber": "647-894-0665",
+      "PostalCode": "",
+      "Address": "180 Forum Drive Mississauga",
+      "Status": 2,
+      "Details": [
+        {
+          "CustomNotes": "No Yogurt!"
         },
-  
-        { "Id" : 2,
-            "FirstName" : "Peri",
-            "PhoneNumber" : "647-894-0665",
-            "PostalCode" : "",
-            "Address" : "180 Forum Drive Mississauga",
-            "Status": 2,
-            "Details": [{"CustomNotes" : "No Yogurt!"},
-                    {"CustomNotes" : "Possibly extra sambar."}
-                   ]  
-        },
-  
-        { "Id" : 3,          
-            "FirstName" : "Vijay",
-            "PhoneNumber" : "7055593820",
-            "PostalCode" : "L4T1X3",
-            "Address" : "Not Given",
-            "Status": 1
-        },
-  
-        { "Id" : 4,          
-            "FirstName" : "Jay",
-            "PhoneNumber" : "916-221-8383",
-            "PostalCode" : "",
-            "Address" : "Lisgar",
-            "Status": 4
+        {
+          "CustomNotes": "Possibly extra sambar."
         }
       ]
+    },
+    {
+      "id": 2,
+      "FirstName": "Peri",
+      "PhoneNumber": "647-894-0665",
+      "PostalCode": "",
+      "Address": "180 Forum Drive Mississauga",
+      "Status": 2,
+      "Details": [
+        {
+          "CustomNotes": "No Yogurt!"
+        },
+        {
+          "CustomNotes": "Possibly extra sambar."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "FirstName": "Vijay",
+      "PhoneNumber": "7055593820",
+      "PostalCode": "L4T1X3",
+      "Address": "Not Given",
+      "Status": 1
+    },
+    {
+      "id": 4,
+      "FirstName": "Jay",
+      "PhoneNumber": "916-221-8383",
+      "PostalCode": "",
+      "Address": "Lisgar",
+      "Status": 4
+    }
+  ]
 }

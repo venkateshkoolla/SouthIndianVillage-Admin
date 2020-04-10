@@ -15,7 +15,7 @@ import { HttpModule } from '@angular/http';
         [detail] = "customer"
         (edit) = "handleEdit($event)"
         (remove) = "handleRemove($event)"
-        ></customer-details>    
+        ></customer-details>
     </div>
     ` 
 })
@@ -49,7 +49,7 @@ export class CustomerDashboardComponent
     {
       return customer.Id !== event.Id;
     });
-  })
+  },(error) => {throw("Error thrown from API on Remove............!!!!")})
 }
 
   handleEdit(event: Customer){
@@ -62,7 +62,7 @@ export class CustomerDashboardComponent
           }
           return customer;
           });
-      })           
+      },(error) => {throw("Error thrown from API on Edit............!!!!")})           
       console.log(this.customers);
       }
 
