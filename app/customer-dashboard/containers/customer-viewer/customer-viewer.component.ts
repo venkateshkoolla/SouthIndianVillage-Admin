@@ -10,29 +10,31 @@ import { Customer } from '../../models/customer.interface';
   selector: 'customer-viewer',
   styleUrls: ['customer-viewer.component.scss'],
   template: `
-    <form #form = "ngForm" noValidate (ngSubmit) = "HandleSubmit(form.value, true)">
-        {{customer | json}}
-        <div name = "id" [ngModel] = customer?.id></div>    
+    <form #form = "ngForm" noValidate (ngSubmit) = "HandleSubmit(form.value, true)">        
+    <div>
+    Id:
+        <input type = "text" name = "id" required #id = "ngModel" [ngModel] = customer?.id>
+    </div>
     <div>
     FirstName:
-        <input type = "text" name = "FirstName" required #FirstName = "ngModel" [ngModel] = customer?.FirstName>
-        <div *ngIf = "FirstName.errors?.required && FirstName?.dirty " class = "error">
+        <input type = "text" name = "firstName" required #firstName = "ngModel" [ngModel] = customer?.firstName>
+        <div *ngIf = "firstName.errors?.required && firstName?.dirty " class = "error">
             FirstName is required.
         </div>        
     </div>
     <div>
     PhoneNumber:
-        <input type = "text" name = "PhoneNumber" required #PhoneNumber = "ngModel" 
-        [ngModel] = customer?.PhoneNumber>
-        <div *ngIf = "PhoneNumber.errors?.required && PhoneNumber?.dirty " class = "error">
+        <input type = "text" name = "phoneNumber" required #phoneNumber = "ngModel" 
+        [ngModel] = customer?.phoneNumber>
+        <div *ngIf = "phoneNumber.errors?.required && phoneNumber?.dirty " class = "error">
             PhoneNumber is required.
         </div>
     </div>
     <div>
     PostalCode:
-        <input type = "text" name = "PostalCode" required #PostalCode = "ngModel" 
-        [ngModel] = customer?.PostalCode >
-        <div *ngIf = "PostalCode.errors?.required && PostalCode?.dirty" class = "error">
+        <input type = "text" name = "postalCode" required #postalCode = "ngModel" 
+        [ngModel] = customer?.postalCode >
+        <div *ngIf = "postalCode.errors?.required && postalCode?.dirty" class = "error">
         PostalCode is required.
     </div>
     </div>
@@ -58,7 +60,7 @@ export class CustomerViewerComponent implements OnInit {
   ngOnInit() {      
      this.route.params
      .switchMap((data: Customer) => {
-         return  this.customerService.getCustomer(data.Id)})
+         return  this.customerService.getCustomer(2)})
      .subscribe((data: Customer) => this.customer = data);
   }
 

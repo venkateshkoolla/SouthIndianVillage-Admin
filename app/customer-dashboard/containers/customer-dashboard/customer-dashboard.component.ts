@@ -43,11 +43,11 @@ export class CustomerDashboardComponent
   }
   handleRemove(event : Customer){
 
-  this.customerService.removeCustomer(event.Id)
+  this.customerService.removeCustomer(event.id)
   .subscribe((data : Customer) => {
     this.customers = this.customers.filter((customer: Customer) => 
     {
-      return customer.Id !== event.Id;
+      return customer.id !== event.id;
     });
   },(error) => {throw("Error thrown from API on Remove............!!!!")})
 }
@@ -56,7 +56,7 @@ export class CustomerDashboardComponent
       this.customerService.updateCustomer(event)
       .subscribe((data: Customer)=>{
         this.customers.map((customer : Customer) => {
-          if(customer.Id === event.Id)
+          if(customer.id === event.id)
           {
             customer = Object.assign({}, customer, event);
           }

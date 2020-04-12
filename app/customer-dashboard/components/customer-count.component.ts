@@ -17,9 +17,14 @@ export class CustomerCountComponent{
     @Input()
     items : Customer[];
     ActiveCustomers() : number {
-        if(!this.items) return;
+        if(!this.items) 
+        {           
+            return;
+        }
         return this.items.filter((customer : Customer) => {
-            return customer.Status == CustomerStatus.Active;
+            console.log("Customer status:", customer.status);
+            console.log("Customer object:", customer);
+            return customer.status == CustomerStatus.Active;
         }).length;
     }
 }

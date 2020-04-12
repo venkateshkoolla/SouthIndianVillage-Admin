@@ -16,12 +16,12 @@
       <li *ngFor="let customer of customers">
          <span class = "status"
         [class.Active] = "customer.Active"></span>
-        {{customer.FirstName}} 
-        {{customer.LastName}}
-        {{customer.PhoneNumber}}
-        <div *ngIf = "customer.Children?.length  > 0">
+        {{customer.firstName}} 
+        {{customer.lastName}}
+        {{customer.phoneNumber}}
+        <!-- <div *ngIf = "customer.Children?.length  > 0">
         Children: {{customer.Children?.length}}
-        </div>
+        </div> -->
       </li>
     </ul>
     </div>

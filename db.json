@@ -2,51 +2,41 @@
   "customers": [
     {
       "id": 1,
-      "FirstName": "pavan",
-      "PhoneNumber": "647-894-0665",
-      "PostalCode": "",
-      "Address": "180 Forum Drive Mississauga",
-      "Status": 2,
-      "Details": [
+      "firstName": "pavan",
+      "phoneNumber": "647-894-0665",
+      "postalCode": "L4T1V7",
+      "address": "",
+      "status": 2,
+      "details": [
         {
-          "CustomNotes": "No Yogurt!"
+          "customNotes": "No Fruits!"
         },
         {
-          "CustomNotes": "Possibly extra sambar."
+          "customNotes": "Bolied egg ok!"
         }
       ]
     },
     {
       "id": 2,
-      "FirstName": "Peri",
-      "PhoneNumber": "647-894-0665",
-      "PostalCode": "",
-      "Address": "180 Forum Drive Mississauga",
-      "Status": 2,
-      "Details": [
-        {
-          "CustomNotes": "No Yogurt!"
-        },
-        {
-          "CustomNotes": "Possibly extra sambar."
-        }
-      ]
+      "firstName": "Peri",
+      "phoneNumber": "647-894-0665",
+      "postalCode": "l5n"
     },
     {
       "id": 3,
-      "FirstName": "Vijay",
-      "PhoneNumber": "7055593820",
-      "PostalCode": "L4T1X3",
-      "Address": "Not Given",
-      "Status": 1
+      "firstName": "Vijay",
+      "phoneNumber": "7055593820",
+      "postalCode": "L4T1X3",
+      "address": "Not Given",
+      "status": 1
     },
     {
       "id": 4,
-      "FirstName": "Jay",
-      "PhoneNumber": "916-221-8383",
-      "PostalCode": "",
-      "Address": "Lisgar",
-      "Status": 4
+      "firstName": "Jay",
+      "phoneNumber": "916-221-8383",
+      "postalCode": "",
+      "address": "Lisgar",
+      "status": 4
     }
   ]
 }

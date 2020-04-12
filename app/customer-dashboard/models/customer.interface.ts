@@ -1,17 +1,17 @@
 export interface Customer{
-    Id : number,
-    FirstName : string,
-    LastName? : string,
-    PhoneNumber: string,
-    PostalCode? : string,
-    Address? : string
+    id : number,
+    firstName : string,
+    lastName? : string,
+    phoneNumber: string,
+    postalCode? : string,
+    address? : string
     // Active? : boolean,
-    Status : CustomerStatus
-    Details? : CustomerDetail[]
+    status : CustomerStatus
+    details? : CustomerDetail[]
   }
   
 export   interface CustomerDetail{
-    CustomNotes : string
+    customNotes : string
   }
 
   export enum CustomerStatus{

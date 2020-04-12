@@ -6,27 +6,27 @@ import { Customer } from '../models/customer.interface'
     styleUrls : ['customer-details.component.scss'],
     template : `
     <div>      
-      <span class = "status" *ngIf = "detail.Status == 1"  [class.Active] = "detail.Status"></span>
-      <span class = "status" *ngIf = "detail.Status == 2"  [class.Enquiry] = "detail.Status"></span>
-      <span class = "status" *ngIf = "detail.Status == 3"  [class.Closed] = "detail.Status"></span>
-      <span class = "status" *ngIf = "detail.Status == 4"  [class.Hold] = "detail.Status"></span>
+      <span class = "status" *ngIf = "detail.status == 1"  [class.Active] = "detail.status"></span>
+      <span class = "status" *ngIf = "detail.status == 2"  [class.Enquiry] = "detail.status"></span>
+      <span class = "status" *ngIf = "detail.status == 3"  [class.Closed] = "detail.status"></span>
+      <span class = "status" *ngIf = "detail.status == 4"  [class.Hold] = "detail.status"></span>
       <div *ngIf = "editing">
       <input type = "text" 
-      [value] = "detail.FirstName"
+      [value] = "detail.firstName"
       (input) = "OnNameChange(name.value)"
       #name
       >
       </div>
       <div *ngIf = "!editing">
-      {{detail.FirstName}} </div>
-      {{detail.LastName}}
-      {{detail.PhoneNumber}}
-      {{detail.PostalCode}}
-      {{detail.Address}}
+      {{detail.firstName}} </div>
+      {{detail.lastName}}
+      {{detail.phoneNumber}}
+      {{detail.postalCode}}
+      {{detail.address}}
 
-      <div *ngIf= "detail.Details?.length >0">
-        <div *ngFor = "let customerDetail of detail.Details">
-        {{customerDetail.CustomNotes}}
+      <div *ngIf= "detail.details?.length >0">
+        <div *ngFor = "let customerDetail of detail.details">
+        {{customerDetail.customNotes}}
       </div>      
       </div>
       <div >
@@ -62,7 +62,7 @@ export class CustomerDetailsComponent{
     }
     OnNameChange(value: string)
     {
-      this.detail.FirstName = value;
+      this.detail.firstName = value;
     }
 
     toggleEdit(){

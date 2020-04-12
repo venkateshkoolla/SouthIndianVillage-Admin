@@ -37,6 +37,8 @@ export class CustomerDashboardService{
     
     updateCustomer(customer : Customer):   Observable<Customer>{
 
+        console.log("UpdateCustomerObject",customer);
+        console.log(customer.id);
         let headers = new Headers({
             'content-type': 'application/json'
         });
@@ -46,7 +48,7 @@ export class CustomerDashboardService{
         );
             console.log(customer);
         return this.http
-                   .put(`${CUSTOMER_API}/${customer.Id}`, customer, options)
+                   .put(`${CUSTOMER_API}/${customer.id}`, customer, options)
                    .map((response: Response) => response.json())
                    .catch((error: any) => Observable.throw(error.json())
                    );                   
