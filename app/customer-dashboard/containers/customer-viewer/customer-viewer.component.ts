@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 import { CustomerDashboardService } from '../../customer-dashboard.service';
 
@@ -48,12 +50,16 @@ export class CustomerViewerComponent implements OnInit {
   @Output()
   update : EventEmitter<Customer> = new EventEmitter<Customer>();
 
-  constructor(private customerService: CustomerDashboardService) {}
-  ngOnInit() {
-    this.customerService
-      .getCustomer(this.customer.Id)
-      .subscribe((data: Customer) => this.customer = data);
-      console.log(this.customer);
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private customerService: CustomerDashboardService) {}
+
+  ngOnInit() {      
+     this.route.params
+     .switchMap((data: Customer) => {
+         return  this.customerService.getCustomer(data.Id)})
+     .subscribe((data: Customer) => this.customer = data);
   }
 
   HandleSubmit(customer: Customer, isValid: boolean){

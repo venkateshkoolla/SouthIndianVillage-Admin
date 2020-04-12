@@ -26,6 +26,8 @@ export class CustomerDashboardService{
     }
 
     getCustomer(id : number): Observable<Customer>    {
+        console.log("reached service level!");
+        console.log(id.toString());
         return this.http
                    .get(`${CUSTOMER_API}/${id}`)
                    .map((response: Response) => response.json())
@@ -44,7 +46,7 @@ export class CustomerDashboardService{
         );
             console.log(customer);
         return this.http
-                   .put(`${CUSTOMER_API}/${1}`, customer, options)
+                   .put(`${CUSTOMER_API}/${customer.Id}`, customer, options)
                    .map((response: Response) => response.json())
                    .catch((error: any) => Observable.throw(error.json())
                    );                   

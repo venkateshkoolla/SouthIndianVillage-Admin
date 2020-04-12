@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CustomerDashboardModule } from './customer-dashboard/customer-dashboard.module'
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
-import {RouterModule, Routes } from '@angular/Router';
+import {RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.Component';
 import { NotFoundComponent } from './not-Found.Component';
+import { CommonModule } from '@angular/common';
 
 const routes : Routes = [
   {path:'' , component: HomeComponent, pathMatch: 'full'  },
@@ -21,10 +22,9 @@ const routes : Routes = [
 
   imports: [
     BrowserModule,
+    CommonModule,
     RouterModule.forRoot(routes),
-    HttpModule,
-    RouterModule,    
-    
+   
     // custom modules
     CustomerDashboardModule
   ],

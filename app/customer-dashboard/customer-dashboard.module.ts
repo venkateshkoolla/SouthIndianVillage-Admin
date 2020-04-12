@@ -22,7 +22,7 @@ const routes : Routes = [
     {path:'customers' ,
     children: [
         {path: '', component: CustomerDashboardComponent}, 
-        {path: ':/id', component: CustomerViewerComponent}],
+        {path: ':Id', component: CustomerViewerComponent}],
      }
   ]
 
@@ -37,7 +37,7 @@ imports : [ CommonModule,
             FormsModule,
             RouterModule.forRoot(routes)
         ],
-exports : [CustomerDashboardComponent, CustomerViewerComponent],
+exports : [CustomerDashboardComponent, CustomerViewerComponent, RouterModule],
 providers : [CustomerDashboardService]
 })
 
