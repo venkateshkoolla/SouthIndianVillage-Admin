@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 
 const routes : Routes = [
   {path:'' , component: HomeComponent, pathMatch: 'full'  },
-  {path:'**' , component: NotFoundComponent  }
+  {path:'**' , component: HomeComponent  }
 ]
 
 @NgModule({

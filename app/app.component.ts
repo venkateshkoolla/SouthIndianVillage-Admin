@@ -14,41 +14,37 @@ interface Nav{
   styleUrls: ['app.component.scss'],
   template: `
     <div class="app">
-      <nav class = "nav">
-        <a *ngFor = "let n of nav" 
-        [routerLink] = "n.link" 
-        routerLinkActive = "Active"> {{n.name}} </a>
+      <nav class="nav">
+        <a 
+          *ngFor="let item of nav"
+          [routerLink]="item.link"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.exact }">
+          {{ item.name }}
+        </a>
       </nav>
-      <router-outlet></router-outlet>    
+      <router-outlet></router-outlet>
     </div>
   `
 })
-
 export class AppComponent {
-
-  nav : Nav[] = [
+  nav: Nav[] = [
     {
       link: '/',
       name: 'Home',
       exact: true
     },
     {
-      link: '/oops',
-      name: '404',
-      exact: false
-    },
-    {
-      link: '/Register',
-      name: 'Register',
-      exact: false
-    },
-    {
       link: '/customers',
-      name: 'Customers',
-      exact: false
-    }
-  ]
-
+      name: 'customers',
+      exact: true
+    },
+    // {
+    //   link: '/oops',
+    //   name: '404',
+    //   exact: false
+    // }
+  ];
 }
 
 // <div>

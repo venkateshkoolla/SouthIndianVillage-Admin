@@ -19,27 +19,34 @@ import { CustomerDetailsComponent } from './components/customer-details.componen
 import {CustomerDashboardService} from './customer-dashboard.service'
 
 const routes : Routes = [
-    {path:'customers' ,
+    {
+      path:'customers' ,
     children: [
         {path: '', component: CustomerDashboardComponent}, 
-        {path: ':Id', component: CustomerViewerComponent}],
+        {path: ':id', component: CustomerViewerComponent}],
      }
   ]
+  
+  @NgModule({
+    declarations: [
+      CustomerDashboardComponent,
+      CustomerViewerComponent,
+      CustomerCountComponent,
+      CustomerDetailsComponent
+      
+    ],
+    imports: [
+      CommonModule,
+      HttpModule,
+      FormsModule,
+      RouterModule.forRoot(routes)
+    ],
+    providers: [
+        CustomerDashboardService,
+        CustomerViewerComponent, 
+        RouterModule
+    ],
 
-@NgModule({
-declarations : [CustomerDashboardComponent,           
-                CustomerViewerComponent,                  
-                CustomerCountComponent, 
-                CustomerDetailsComponent                                
-            ],
-imports : [ CommonModule,
-            HttpModule,
-            FormsModule,
-            RouterModule.forRoot(routes)
-        ],
-exports : [CustomerDashboardComponent, CustomerViewerComponent, RouterModule],
-providers : [CustomerDashboardService]
-})
-
-export class CustomerDashboardModule {    
-}
+    exports : [CustomerDashboardComponent, CustomerViewerComponent, RouterModule]
+  })
+  export class CustomerDashboardModule {}

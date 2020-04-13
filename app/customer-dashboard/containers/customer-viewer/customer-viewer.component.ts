@@ -57,10 +57,13 @@ export class CustomerViewerComponent implements OnInit {
     private route: ActivatedRoute,
     private customerService: CustomerDashboardService) {}
 
-  ngOnInit() {      
+  ngOnInit() {   
+    console.log("route params:", this.route.params);
+    console.log("activatedRoute",this.route);
+       
      this.route.params
      .switchMap((data: Customer) => {
-         return  this.customerService.getCustomer(2)})
+         return  this.customerService.getCustomer(data.id)})
      .subscribe((data: Customer) => this.customer = data);
   }
 
