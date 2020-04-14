@@ -29,6 +29,26 @@ export class CustomerDetailsComponent{
       this.detail.firstName = value;
     }
 
+    OnLastNameChange(value: string){
+      this.detail.lastName = value;
+    }
+    
+    OnPhoneNumberChange(value : string){
+      this.detail.phoneNumber = value;
+    }
+    
+    OnPostalCodeChange(value : string){
+      this.detail.phoneNumber = value;
+    }
+
+    OnAddressChange(value : string){
+      this.detail.address = value;
+    }
+
+    OnCustomerNotesChange(value: string){
+      this.detail.details[0].customNotes = value;
+    }
+
     toggleEdit(){
       if(this.editing){
         this.edit.emit(this.detail);

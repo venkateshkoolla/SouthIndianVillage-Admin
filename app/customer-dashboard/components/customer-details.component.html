@@ -1,5 +1,4 @@
-<div class = "main">
-  
+<div class = "main">  
   <div class="row">
   <div class = "column" >
     <div>
@@ -9,38 +8,59 @@
         <span class = "status" *ngIf = "detail.status == 4"  [class.Hold] = "detail.status">  Hold</span>
     </div>
   </div>
-
-  <div class = "column" >
+  <div class = "column">
     <div>
       <div *ngIf = "editing">
-        <input type = "text" 
-        [value] = "detail.firstName"
-        (input) = "OnNameChange(name.value)"
-        #name>
+        <input type = "text" [value] = "detail.firstName"
+        (input) = "OnNameChange(name.value)"#name>
       </div>
       <div *ngIf = "!editing">
-        {{detail.firstName}} </div>
-      
-    </div>
-      
+        {{detail.firstName}} 
+      </div>      
+    </div>      
   </div>
   <div class = "column" >
-    <div>{{detail.lastName}}</div>
+    <div *ngIf ="editing">
+    <input type="text" [value] = "detail.lastName"
+      (input) = "OnLastNameChange(lastName.value)" #lastName>
+    </div>
+    <div *ngIf = "!editing">
+      {{detail.lastName}}
+    </div>
   </div>
   
   <div class = "column" >
+    <div *ngIf = "editing">
+      <input type="text" [value] = "detail.phoneNumber"
+      (input) = "OnPhoneNumberChange(phoneNumber.value)" #phoneNumber>
+    </div>
     <div>{{detail.phoneNumber}}</div>
   </div>
   <div class = "column" >
-    <div>{{detail.postalCode}}</div>
+    <div *ngIf = "editing">
+      <input type="text" [value] = "detail.postalCode"
+      (input) = "OnPostalCodeChange(postalCode.value)" #postalCode>
+    </div>
+    <div *ngIf = "!editing">{{detail.postalCode}}</div>
   </div>
 
   <div class = "column" >
-    <div>{{detail.address}}</div>
+    <div *ngIf = "editing">
+      <input type="text" [value] = "detail.address"
+      (input) = "OnAddressChange(address.value)" #address>
+    </div>
+    <div *ngIf = "!editing">{{detail.address}}</div>
   </div>
 
   <div class = "column" >
-  <div *ngIf= "detail.details?.length >0">
+    <div *ngIf = "editing && detail.details?.length>0" >      
+      <div *ngFor = "let customerDetail of detail.details">
+        <input type= "text" [value] = "customerDetail.customNotes"
+        (input) = "OnCustomerNotesChange(notes.value)" 
+         #notes>
+      </div>      
+    </div>
+  <div *ngIf= "!editing && detail.details?.length >0">
       <div *ngFor = "let customerDetail of detail.details">
       {{customerDetail.customNotes}}</div>      
   </div>

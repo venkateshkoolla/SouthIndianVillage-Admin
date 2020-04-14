@@ -39,13 +39,13 @@
   .column {
     display: flex;
     flex-direction: column;
-    flex-basis: 100%;
+    flex-basis: inherit;
     flex: 2;
+    min-width: 100px;
   }
   .row {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     width: 100%;
   }
   .rowHeader{
