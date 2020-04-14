@@ -2,10 +2,11 @@
   "customers": [
     {
       "id": 1,
-      "firstName": "pavanTest",
+      "firstName": "pavan",
+      "lastName": "lastName",
       "phoneNumber": "647-894-0665",
       "postalCode": "L4T1V7",
-      "address": "",
+      "address": "Malton",
       "status": 2,
       "details": [
         {

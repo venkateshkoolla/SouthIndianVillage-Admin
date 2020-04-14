@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+import { catchError, map } from 'rxjs/operators';
 
 import { CustomerDashboardService } from '../../customer-dashboard.service';
 
@@ -61,10 +61,19 @@ export class CustomerViewerComponent implements OnInit {
     console.log("route params:", this.route.params);
     console.log("activatedRoute",this.route);
        
-     this.route.params
-     .switchMap((data: Customer) => {
-         return  this.customerService.getCustomer(data.id)})
-     .subscribe((data: Customer) => this.customer = data);
+    //  this.route.params.forEach((data: Customer) => {
+    //       this.customerService.getCustomer(data.id)})
+    // .then(data => this.customer = data);
+
+
+    this.route.params.forEach((params: Params) => {
+      if (params['id'] !== undefined) {
+        let id = +params['id'];
+        this.customerService.getCustomer(id)
+            .pipe(map(hero => this.customer = hero))
+      } 
+    });
+
   }
 
   HandleSubmit(customer: Customer, isValid: boolean){

@@ -1,35 +1,60 @@
-<div>      
-    <span class = "status" *ngIf = "detail.status == 1"  [class.Active] = "detail.status"></span>
-    <span class = "status" *ngIf = "detail.status == 2"  [class.Enquiry] = "detail.status"></span>
-    <span class = "status" *ngIf = "detail.status == 3"  [class.Closed] = "detail.status"></span>
-    <span class = "status" *ngIf = "detail.status == 4"  [class.Hold] = "detail.status"></span>
-    <div *ngIf = "editing">
-    <input type = "text" 
-    [value] = "detail.firstName"
-    (input) = "OnNameChange(name.value)"
-    #name
-    >
+<div class = "main">
+  
+  <div class="row">
+  <div class = "column" >
+    <div>
+        <span class = "status" *ngIf = "detail.status == 1"  [class.Active] = "detail.status">  Active</span>
+        <span class = "status" *ngIf = "detail.status == 2"  [class.Enquiry] = "detail.status">  Enquiry</span>
+        <span class = "status" *ngIf = "detail.status == 3"  [class.Closed] = "detail.status">  Closed</span>
+        <span class = "status" *ngIf = "detail.status == 4"  [class.Hold] = "detail.status">  Hold</span>
     </div>
-    <div *ngIf = "!editing">
-    {{detail.firstName}} </div>
-    {{detail.lastName}}
-    {{detail.phoneNumber}}
-    {{detail.postalCode}}
-    {{detail.address}}
+  </div>
 
-    <div *ngIf= "detail.details?.length >0">
-      <div *ngFor = "let customerDetail of detail.details">
-      {{customerDetail.customNotes}}
-    </div>      
+  <div class = "column" >
+    <div>
+      <div *ngIf = "editing">
+        <input type = "text" 
+        [value] = "detail.firstName"
+        (input) = "OnNameChange(name.value)"
+        #name>
+      </div>
+      <div *ngIf = "!editing">
+        {{detail.firstName}} </div>
+      
     </div>
-    <div >
+      
+  </div>
+  <div class = "column" >
+    <div>{{detail.lastName}}</div>
+  </div>
+  
+  <div class = "column" >
+    <div>{{detail.phoneNumber}}</div>
+  </div>
+  <div class = "column" >
+    <div>{{detail.postalCode}}</div>
+  </div>
+
+  <div class = "column" >
+    <div>{{detail.address}}</div>
+  </div>
+
+  <div class = "column" >
+  <div *ngIf= "detail.details?.length >0">
+      <div *ngFor = "let customerDetail of detail.details">
+      {{customerDetail.customNotes}}</div>      
+  </div>
+  </div>
+
+    <div class = "column" >
       <div>
-      <button mat-button color = "warn" (click)= "toggleEdit()" >
+      <button mat-button color = "primary" (click)= "toggleEdit()" >
       {{editing ? 'Done' : 'Edit'}}</button>
       </div>
       <div>
-      <button mat-mini-fab (click)= "OnRemove()" >
+      <button mat-button (click)= "OnRemove()" >
       Remove</button>
       </div>
     </div>    
-  </div>
+
+</div>  

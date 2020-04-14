@@ -13,8 +13,9 @@ interface Nav{
   selector: 'app-root',
   styleUrls: ['app.component.scss'],
   template: `
+  
     <div class="app">
-      <nav class="nav">
+    <nav class="nav">
         <a 
           *ngFor="let item of nav"
           [routerLink]="item.link"
@@ -23,6 +24,7 @@ interface Nav{
           {{ item.name }}
         </a>
       </nav>
+      
       <router-outlet></router-outlet>
     </div>
   `

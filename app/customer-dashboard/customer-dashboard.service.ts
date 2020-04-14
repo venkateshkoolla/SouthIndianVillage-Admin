@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core'
 import {Http, Response, Headers, RequestOptions} from '@angular/http'
 
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/Observable/throw';
-import 'rxjs/add/operator/catch';
-
+import { catchError, map } from 'rxjs/operators';
+import { Observable, throwError, of} from 'rxjs';
 import { Customer } from "./models/customer.interface";
 
 const CUSTOMER_API : string = '/api/customers';
@@ -20,9 +16,7 @@ export class CustomerDashboardService{
     getCustomers(): Observable<Customer[]>    {
         return this.http
                    .get(CUSTOMER_API)
-                   .map((response: Response) => response.json())
-                   .catch((error: any) => Observable.throw(error.json())
-                   );                                        
+                   .pipe(map((response: Response) => response.json()))
     }
 
     getCustomer(id : number): Observable<Customer>    {
@@ -30,10 +24,7 @@ export class CustomerDashboardService{
         console.log(id.toString());
         return this.http
                    .get(`${CUSTOMER_API}/${id}`)
-                   .map((response: Response) => response.json())
-                   .catch((error: any) => Observable.throw(error.json())
-                   );                                        
-    }
+                   .pipe(map((response: Response) => response.json()))}
     
     updateCustomer(customer : Customer):   Observable<Customer>{
 
@@ -49,15 +40,12 @@ export class CustomerDashboardService{
             console.log(customer);
         return this.http
                    .put(`${CUSTOMER_API}/${customer.id}`, customer, options)
-                   .map((response: Response) => response.json())
-                   .catch((error: any) => Observable.throw(error.json())
-                   );                   
+                   .pipe(map((response: Response) => response.json()))                                     
     }
 
     removeCustomer(id : number):   Observable<Customer>{
         return this.http
                    .delete(`${CUSTOMER_API}/${id}`)
-                   .map((response: Response) => response.json())
-                   .catch((error: any) => Observable.throw(error.json())); 
+                   .pipe(map((response: Response) => response.json()))
     }
 }

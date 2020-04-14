@@ -7,6 +7,7 @@ import {RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.Component';
 import { NotFoundComponent } from './not-Found.Component';
 import { CommonModule } from '@angular/common';
+import {MatButtonModule} from '@angular/material/button'
 
 const routes : Routes = [
   {path:'' , component: HomeComponent, pathMatch: 'full'  },
@@ -24,7 +25,7 @@ const routes : Routes = [
     BrowserModule,
     CommonModule,
     RouterModule.forRoot(routes),
-   
+    MatButtonModule,
     // custom modules
     CustomerDashboardModule
   ],

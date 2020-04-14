@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common'
 import {HttpModule} from '@angular/http'
 import {FormsModule} from '@angular/forms'
 import {RouterModule, Routes } from '@angular/Router';
+import {MatButtonModule} from '@angular/material/button'
 
 //containers
 import {CustomerDashboardComponent} from './containers/customer-dashboard/customer-dashboard.component'
@@ -39,7 +40,8 @@ const routes : Routes = [
       CommonModule,
       HttpModule,
       FormsModule,
-      RouterModule.forRoot(routes)
+      RouterModule.forRoot(routes),
+      MatButtonModule
     ],
     providers: [
         CustomerDashboardService,

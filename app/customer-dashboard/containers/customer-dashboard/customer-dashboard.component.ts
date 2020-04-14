@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core'
 import {Customer, CustomerStatus, CustomerDetail} from '../../models/customer.interface'
 import { stringify } from 'querystring';
 import {CustomerDashboardService} from '../../customer-dashboard.service'
-import { Observable } from 'rxjs/Observable';
-import { HttpModule } from '@angular/http';
 
 @Component({
     selector : 'customer-dashboard',
@@ -11,6 +9,30 @@ import { HttpModule } from '@angular/http';
     template:`
     <div> 
     <customer-count [items] = "customers"></customer-count>
+    <div class="rowHeader" >
+    <div class = "column" >
+      Status
+    </div>
+    <div class = "column" >
+      FirstName
+    </div>
+    <div class = "column" >
+      LastName
+    </div>
+    <div class = "column" >
+      PhoneNumber
+    </div>
+    <div class = "column" >
+      PostalCode
+    </div>
+    <div class = "column" >
+      Address
+    </div>
+    <div class = "column" >
+      Comments
+    </div>
+
+  </div>
     <customer-details *ngFor="let customer of customers;"
         [detail] = "customer"
         (edit) = "handleEdit($event)"
