@@ -9,6 +9,7 @@ import {CustomerDashboardService} from '../../customer-dashboard.service'
     template:`
     <div> 
     <customer-count [items] = "customers"></customer-count>
+    <br>
     <div class="rowHeader" >
     <div class = "column" >
       Status
@@ -31,13 +32,13 @@ import {CustomerDashboardService} from '../../customer-dashboard.service'
     <div class = "column" >
       Comments
     </div>
-
   </div>
+  <div id = "customer-details">
     <customer-details *ngFor="let customer of customers;"
         [detail] = "customer"
         (edit) = "handleEdit($event)"
-        (remove) = "handleRemove($event)"
-        ></customer-details>
+        (remove) = "handleRemove($event)"></customer-details>
+  </div>
     </div>
     ` 
 })

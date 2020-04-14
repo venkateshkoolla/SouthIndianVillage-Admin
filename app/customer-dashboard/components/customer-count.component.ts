@@ -5,10 +5,7 @@ import { Customer, CustomerStatus } from '../models/customer.interface'
     selector : 'customer-count',
     template : `
     <div>
-    <h3>Customers</h3>
-    <div>
-    Active customers : {{ActiveCustomers()}} / {{items?.length}}        
-    </div>    
+    Active customers : {{ActiveCustomers()}} / {{items?.length}}
     </div>
     `
 })
