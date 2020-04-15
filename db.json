@@ -3,14 +3,14 @@
     {
       "id": 1,
       "firstName": "pavan",
-      "lastName": "dont know",
+      "lastName": "pavan name",
       "phoneNumber": "647-894-0665",
       "postalCode": "L4T1V7",
       "address": "Malton ON",
       "status": 2,
       "details": [
         {
-          "customNotes": "no fruits"
+          "customNotes": "no fruits adn veg"
         },
         {
           "customNotes": "Bolied egg ok!"

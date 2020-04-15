@@ -14,7 +14,7 @@ interface Nav{
   styleUrls: ['app.component.scss'],
   template: `
   
-    <div class="app">
+    <div class = "app-root">
     <nav class="nav">
         <a 
           *ngFor="let item of nav"
@@ -23,8 +23,7 @@ interface Nav{
           [routerLinkActiveOptions]="{ exact: item.exact }">
           {{ item.name }}
         </a>
-      </nav>
-      
+      </nav>      
       <router-outlet></router-outlet>
     </div>
   `
@@ -39,6 +38,11 @@ export class AppComponent {
     {
       link: '/customers',
       name: 'customers',
+      exact: true
+    },
+    {
+      link: '/login',
+      name: 'login',
       exact: true
     },
     // {

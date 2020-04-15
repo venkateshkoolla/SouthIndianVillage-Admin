@@ -21,8 +21,8 @@ import {CustomerDashboardService} from './customer-dashboard.service'
 
 const routes : Routes = [
     {
-      path:'customers' ,
-    children: [
+      path:'customers',
+      children: [
         {path: '', component: CustomerDashboardComponent}, 
         {path: ':id', component: CustomerViewerComponent}],
      }
