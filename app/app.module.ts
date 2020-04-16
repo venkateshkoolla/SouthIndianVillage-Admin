@@ -13,11 +13,14 @@ import { AuthFormComponent } from './auth-form/auth-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthFormModule } from './auth-form/auth-form.module';
 import { LoginRegistrationComponent } from './auth-form/login-registration.component';
+import { AuthRememberComponent } from './auth-form/auth-remember.component';
+import { CreditCardComponent } from './credit-card/credit-card.component';
 
 
 const routes : Routes = [
-  {path:'' , component: HomeComponent, pathMatch: 'full'  },
-  {path:'login' , component: LoginRegistrationComponent, pathMatch: 'full'  },
+  {path:'' , component: LoginRegistrationComponent, pathMatch: 'full'  },
+  {path:'home' , component: HomeComponent, pathMatch: 'full'  },
+  {path:'payment' , component: CreditCardComponent, pathMatch: 'full'  },
   {path:'**' , component: HomeComponent  }
 ]
 
@@ -26,7 +29,9 @@ const routes : Routes = [
     AppComponent,
     HomeComponent,
     AuthFormComponent,
+    AuthRememberComponent,
     LoginRegistrationComponent,
+    CreditCardComponent,
     NotFoundComponent
   ],
 

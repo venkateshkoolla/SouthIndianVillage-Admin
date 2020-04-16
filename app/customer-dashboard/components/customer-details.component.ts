@@ -12,6 +12,9 @@ export class CustomerDetailsComponent{
     @Input()
     detail : Customer
 
+    @Input()
+    rowNumber : number;
+
     @Output()
     remove : EventEmitter<any> = new EventEmitter();
 

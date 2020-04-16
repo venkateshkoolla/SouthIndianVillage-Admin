@@ -1,6 +1,30 @@
-<div class = "main">  
+<div class = "main">
+    <div class="rowHeader" *ngIf = "rowNumber == 0" >
+      <div class = "column" >
+        <div>Status</div>        
+      </div>
+      <div class = "column" >
+        <div>FirstName</div>
+        
+      </div>
+      <div class = "column" >
+        LastName
+      </div>
+      <div class = "column" >
+        PhoneNumber
+      </div>
+      <div class = "column" >
+        PostalCode
+      </div>
+      <div class = "column" >
+        Address
+      </div>
+      <div class = "column" >
+        Comments
+      </div>
+    </div>
   <div class="row">
-  <div class = "column" >
+  <div class = "column">
     <div>
         <span class = "status" *ngIf = "detail.status == 1"  [class.Active] = "detail.status">  Active</span>
         <span class = "status" *ngIf = "detail.status == 2"  [class.Enquiry] = "detail.status">  Enquiry</span>
@@ -27,8 +51,7 @@
     <div *ngIf = "!editing">
       {{detail.lastName}}
     </div>
-  </div>
-  
+  </div>  
   <div class = "column" >
     <div *ngIf = "editing">
       <input type="text" [value] = "detail.phoneNumber"
@@ -43,7 +66,6 @@
     </div>
     <div *ngIf = "!editing">{{detail.postalCode}}</div>
   </div>
-
   <div class = "column" >
     <div *ngIf = "editing">
       <input type="text" [value] = "detail.address"
@@ -51,7 +73,6 @@
     </div>
     <div *ngIf = "!editing">{{detail.address}}</div>
   </div>
-
   <div class = "column" >
     <div *ngIf = "editing && detail.details?.length>0" >      
       <div *ngFor = "let customerDetail of detail.details">

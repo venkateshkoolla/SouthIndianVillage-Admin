@@ -10,34 +10,14 @@ import {CustomerDashboardService} from '../../customer-dashboard.service'
     <div> 
     <customer-count [items] = "customers"></customer-count>
     <br>
-    <div class="rowHeader" >
-    <div class = "column" >
-      Status
-    </div>
-    <div class = "column" >
-      FirstName
-    </div>
-    <div class = "column" >
-      LastName
-    </div>
-    <div class = "column" >
-      PhoneNumber
-    </div>
-    <div class = "column" >
-      PostalCode
-    </div>
-    <div class = "column" >
-      Address
-    </div>
-    <div class = "column" >
-      Comments
-    </div>
-  </div>
+    
   <div id = "customer-details">
-    <customer-details *ngFor="let customer of customers;"
+  <customer-details *ngFor="let customer of customers; index as i"
+        [rowNumber] = "i"
         [detail] = "customer"
         (edit) = "handleEdit($event)"
-        (remove) = "handleRemove($event)"></customer-details>
+        (remove) = "handleRemove($event)">
+    </customer-details>
   </div>
     </div>
     ` 

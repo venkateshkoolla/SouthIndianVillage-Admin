@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Output} from '@angular/core'
+import {Component, EventEmitter, Output, ElementRef, ViewChild} from '@angular/core'
 import {FormsModule} from '@angular/forms'
 import { User } from './auth-form.interface';
 
@@ -8,28 +8,38 @@ import { User } from './auth-form.interface';
     template: `
     <div class = "div">
     <form class = "form" (ngSubmit) = "OnSubmit(form.value)" #form = "ngForm" >
-        <ng-Content select= "h3"></ng-Content>
-        <div>
+        <ng-Content select= "h3"></ng-Content>        
             <label>
-                Email:<input type="text" name="email" ngModel >
+                Email:<input type="text" name="email" ngModel  #email>
             </label>
-        </div>
-        <div>
             <label>
-                Password:<input type="text" name= "password" ngModel >
-            </label>
-        </div>
-        <ng-Content></ng-Content>
+                Password:<input type="text" name= "password" ngModel #password>
+            </label>        
+        <ng-Content select = "auth-remember"></ng-Content>
+        <ng-Content select = "button"></ng-Content>
     </form>
 </div>`
 })
 
 export class AuthFormComponent{
 
+    @ViewChild('email')
+    email : ElementRef;
+
+    @ViewChild('password')
+    password : ElementRef;
+
     @Output()
     submitted: EventEmitter<User> = new EventEmitter();
 
     OnSubmit(value: User){
         this.submitted.emit(value);
+    }
+
+    ngAfterViewInit(){
+        this.email.nativeElement.setAttribute('placeholder', 'Enter email address');
+        this.email.nativeElement.focus();
+        this.password.nativeElement.setAttribute('placeholder', 'Enter password');
+        console.log(this.email);
     }
 }

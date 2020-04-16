@@ -32,19 +32,24 @@ export class AppComponent {
   nav: Nav[] = [
     {
       link: '/',
-      name: 'Home',
+      name: 'LOGIN',
+      exact: true
+    },
+    {
+      link: '/Home',
+      name: 'HOME',
       exact: true
     },
     {
       link: '/customers',
-      name: 'customers',
+      name: 'CUSTOMERS',
       exact: true
-    },
+    },    
     {
-      link: '/login',
-      name: 'login',
+      link: '/payment',
+      name: 'PAYMENT',
       exact: true
-    },
+    }
     // {
     //   link: '/oops',
     //   name: '404',
