@@ -1,7 +1,7 @@
 .main{
     display: inline-block;
-
 }
+
 .subMain{
     display: flex;
     flex: 1 0;
@@ -9,6 +9,7 @@
 }
 
 .form {
+    display: inline-block;
     flex: 1 0;
     padding: 0 40px;
 }

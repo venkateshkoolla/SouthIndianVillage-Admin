@@ -7,7 +7,6 @@ import {Component} from '@angular/core'
         <h3>SouthIndianVillage Customer dashboard</h3>
     </div>
     `
-
 })
 
 export class HomeComponent{
