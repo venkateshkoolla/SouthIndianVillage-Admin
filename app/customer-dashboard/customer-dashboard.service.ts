@@ -27,19 +27,22 @@ export class CustomerDashboardService{
                    .pipe(map((response: Response) => response.json()))}
     
     updateCustomer(customer : Customer):   Observable<Customer>{
-
-        console.log("UpdateCustomerObject",customer);
-        console.log(customer.id);
         let headers = new Headers({
             'content-type': 'application/json'
         });
-
         let options = new RequestOptions(
            {headers : headers}
         );
-            console.log(customer);
+        
+        console.log(customer);
         return this.http
                    .put(`${CUSTOMER_API}/${customer.id}`, customer, options)
+                   .pipe(map((response: Response) => response.json()))                                     
+    }
+
+    addCustomer(customer: Customer): Observable<Customer>{
+        return this.http
+                   .post(`${CUSTOMER_API}`, customer)
                    .pipe(map((response: Response) => response.json()))                                     
     }
 

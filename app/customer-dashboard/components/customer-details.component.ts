@@ -49,7 +49,7 @@ export class CustomerDetailsComponent{
     }
 
     OnCustomerNotesChange(value: string){
-      this.detail.details[0].customNotes = value;
+      this.detail.notes= value;
     }
 
     toggleEdit(){

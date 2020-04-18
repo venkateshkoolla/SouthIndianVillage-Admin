@@ -74,16 +74,15 @@
     <div *ngIf = "!editing">{{detail.address}}</div>
   </div>
   <div class = "column" >
-    <div *ngIf = "editing && detail.details?.length>0" >      
-      <div *ngFor = "let customerDetail of detail.details">
-        <input type= "text" [value] = "customerDetail.customNotes"
+    <div *ngIf = "editing" >      
+        <textarea type= "text" [value] = "detail.notes"
         (input) = "OnCustomerNotesChange(notes.value)" 
-         #notes>
-      </div>      
+         #notes></textarea>            
     </div>
-  <div *ngIf= "!editing && detail.details?.length >0">
-      <div *ngFor = "let customerDetail of detail.details">
-      {{customerDetail.customNotes}}</div>      
+  <div *ngIf= "!editing">
+    <div>
+      {{detail.notes}}
+    </div>  
   </div>
   </div>
 

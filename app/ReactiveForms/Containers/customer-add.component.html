@@ -1,0 +1,53 @@
+<div>
+    <form [formGroup]= "form" (ngSubmit) = "OnSubmit($event)">
+    <div formGroupName= "customer" class = "subdiv">
+    <label>FirstName:
+        <input type = "text" placeholder = "" formControlName = "firstName">
+    </label>
+    <label>LastName:
+        <input type = "text" placeholder = "" formControlName = "lastName">
+    </label>
+    <label> PhoneNumber:
+        <input type = "text" placeholder = "" formControlName = "phoneNumber">
+    </label>
+    <label> PostalCode:
+        <input type = "text" placeholder = "" formControlName = "postalCode">
+    </label>
+    <label> Email:
+        <input type = "text" placeholder = "" formControlName = "email">
+    </label>
+    <label> Address:
+        <input type = "text" placeholder = "" formControlName = "address">
+    </label>
+    
+    <label> Status:
+        <select formControlName = "status">
+            <option value="">Select status</option>
+            <option *ngFor= "let status of customerStatus" 
+                [value] = "status">
+                {{status}}
+            </option>
+        </select>
+    </label>
+    <label
+    > OrderType:
+        <select formControlName = "orderType">
+            <option [value]="">Select order type</option>
+            <option *ngFor= "let orderType of orderType"
+                [value] = "orderType">
+                {{orderType}}
+            </option>
+        </select>
+    </label>
+    <label> Notes:
+        <textarea type = "text" placeholder = "Add notes..." formControlName = "notes">
+        </textarea>
+    </label>
+    </div>
+    <div class = "subdiv">
+        <button type = "submit" [disabled] = "form.invalid" >Create</button>
+    </div>
+
+    <pre>{{form.value | json}}</pre>
+    </form>
+</div>

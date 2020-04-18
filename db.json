@@ -2,35 +2,21 @@
   "customers": [
     {
       "id": 1,
-      "firstName": "pavan",
-      "lastName": "pavan name",
-      "phoneNumber": "647-894-0665",
-      "postalCode": "L4T1V7",
-      "address": "Malton ON",
-      "status": 2,
-      "details": [
-        {
-          "customNotes": "no fruits adn veg"
-        },
-        {
-          "customNotes": "Bolied egg ok!"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "firstName": "Peri",
+      "firstName": "Pavan",
       "phoneNumber": "647-894-0665",
       "postalCode": "l5n",
       "status": 1,
-      "details": [
-        {
-          "customNotes": "No Yogurt!"
-        },
-        {
-          "customNotes": "Possibly extra sambar."
-        }
-      ]
+      "notes": "Possibly extra sambar",
+      "Notes": "Possibly extra sambar"
+    },
+    {
+      "id": 2,
+      "firstName": "PeriTest",
+      "phoneNumber": "647-894-0665",
+      "postalCode": "l5n",
+      "status": 1,
+      "notes": "No Yogurt! \nPossibly extra sambar",
+      "Notes": "Possibly extra sambar"
     },
     {
       "id": 3,
@@ -38,7 +24,8 @@
       "phoneNumber": "7055593820",
       "postalCode": "L4T1X3",
       "address": "Malton ON",
-      "status": 1
+      "status": 1,
+      "notes": "No Yogurt! \nPossibly extra sambar"
     },
     {
       "id": 4,
@@ -47,6 +34,38 @@
       "postalCode": "",
       "address": "Lisgar",
       "status": 4
+    },
+    {
+      "customer": {
+        "firstName": null,
+        "lastName": null,
+        "phoneNumber": null,
+        "postalCode": null,
+        "status": null
+      },
+      "id": 5
+    },
+    {
+      "customer": {
+        "firstName": "vishwa",
+        "lastName": "koolla",
+        "phoneNumber": "6479835701",
+        "postalCode": "l5n",
+        "status": "Active",
+        "orderType": "Tiffin service"
+      },
+      "id": 6
+    },
+    {
+      "customer": {
+        "firstName": "vishwa",
+        "lastName": "koolla",
+        "phoneNumber": "6479835701",
+        "postalCode": "l5n",
+        "status": "Active",
+        "orderType": "Tiffin service"
+      },
+      "id": 7
     }
   ]
 }

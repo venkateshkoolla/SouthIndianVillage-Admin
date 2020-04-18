@@ -44,7 +44,12 @@ export class AppComponent {
       link: '/customers',
       name: 'CUSTOMERS',
       exact: true
-    },    
+    },
+    {
+      link: '/AddCustomer',
+      name: 'ADD-CUSTOMER',
+      exact: true
+    },  
     {
       link: '/payment',
       name: 'PAYMENT',

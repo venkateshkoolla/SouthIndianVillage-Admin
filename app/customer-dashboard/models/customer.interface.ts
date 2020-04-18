@@ -1,15 +1,20 @@
-export interface Customer{
+export interface Customer
+{
     id : number,
     firstName : string,
     lastName? : string,
     phoneNumber: string,
     postalCode? : string,
     address? : string
-    // Active? : boolean,
     status : CustomerStatus
-    details? : CustomerDetail[]
-  }
-  
+    orderType: OrderType
+    email?: string
+    // details? : CustomerDetail[]
+    createdOn? : string
+    modifiedOn? : string
+    notes?: string
+}
+
 export   interface CustomerDetail{
     customNotes : string
   }
@@ -19,4 +24,9 @@ export   interface CustomerDetail{
     Enquiry = 2,
     Closed = 3,
     Hold = 4   
+  }
+
+  export enum OrderType{
+    TiffinService,
+    Catering
   }

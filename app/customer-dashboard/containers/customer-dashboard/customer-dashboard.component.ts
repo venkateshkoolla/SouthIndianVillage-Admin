@@ -45,7 +45,6 @@ export class CustomerDashboardComponent
     });
   }
   handleRemove(event : Customer){
-
   this.customerService.removeCustomer(event.id)
   .subscribe((data : Customer) => {
     this.customers = this.customers.filter((customer: Customer) => 
@@ -56,6 +55,7 @@ export class CustomerDashboardComponent
 }
 
   handleEdit(event: Customer){
+    console.log("new logging on edit!!!!!!!!!",event);
       this.customerService.updateCustomer(event)
       .subscribe((data: Customer)=>{
         this.customers.map((customer : Customer) => {

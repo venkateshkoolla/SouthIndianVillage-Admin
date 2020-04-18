@@ -15,12 +15,14 @@ import { AuthFormModule } from './auth-form/auth-form.module';
 import { LoginRegistrationComponent } from './auth-form/login-registration.component';
 import { AuthRememberComponent } from './auth-form/auth-remember.component';
 import { CreditCardComponent } from './credit-card/credit-card.component';
+import { CustomerAddComponent } from './ReactiveForms/Containers/customer-add.component';
 
 
 const routes : Routes = [
   {path:'' , component: LoginRegistrationComponent, pathMatch: 'full'  },
   {path:'home' , component: HomeComponent, pathMatch: 'full'  },
   {path:'payment' , component: CreditCardComponent, pathMatch: 'full'  },
+  {path:'AddCustomer' , component: CustomerAddComponent, pathMatch: 'full'  },
   {path:'**' , component: HomeComponent  }
 ]
 
@@ -32,18 +34,20 @@ const routes : Routes = [
     AuthRememberComponent,
     LoginRegistrationComponent,
     CreditCardComponent,
+    CustomerAddComponent,
     NotFoundComponent
   ],
 
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     RouterModule.forRoot(routes),
     MatButtonModule,
+
     // custom modules
-    CustomerDashboardModule
-    
+    CustomerDashboardModule    
   ],
 
   bootstrap: [
