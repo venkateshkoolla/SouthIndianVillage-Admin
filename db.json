@@ -2,7 +2,7 @@
   "customers": [
     {
       "id": 1,
-      "firstName": "Pavan",
+      "firstName": "Pavantests",
       "phoneNumber": "647-894-0665",
       "postalCode": "l5n",
       "status": 1,
@@ -36,36 +36,28 @@
       "status": 4
     },
     {
-      "customer": {
-        "firstName": null,
-        "lastName": null,
-        "phoneNumber": null,
-        "postalCode": null,
-        "status": null
-      },
+      "firstName": "vishwa",
+      "lastName": "k",
+      "phoneNumber": "647-983-5701",
+      "postalCode": "L5N",
+      "status": "1",
+      "orderType": "Tiffin service",
+      "email": "vishwa.koolla@gmail.com",
+      "address": "7054 Fairmeadow Crescent",
+      "notes": null,
       "id": 5
     },
     {
-      "customer": {
-        "firstName": "vishwa",
-        "lastName": "koolla",
-        "phoneNumber": "6479835701",
-        "postalCode": "l5n",
-        "status": "Active",
-        "orderType": "Tiffin service"
-      },
+      "firstName": "Vishwa",
+      "lastName": "Koolla",
+      "phoneNumber": "647-983-5701",
+      "postalCode": "L5N 8R5",
+      "status": "1",
+      "orderType": "Tiffin service",
+      "email": "vishwa.koolla@gmail.com",
+      "address": "7054 Fairmeadow Crescent",
+      "notes": null,
       "id": 6
-    },
-    {
-      "customer": {
-        "firstName": "vishwa",
-        "lastName": "koolla",
-        "phoneNumber": "6479835701",
-        "postalCode": "l5n",
-        "status": "Active",
-        "orderType": "Tiffin service"
-      },
-      "id": 7
     }
   ]
 }

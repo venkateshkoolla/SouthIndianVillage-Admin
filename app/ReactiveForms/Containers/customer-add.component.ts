@@ -1,7 +1,10 @@
 import {Component} from '@angular/core'
-import {FormGroup, FormControl} from '@angular/forms'
-import { Customer } from '../../customer-dashboard/models/customer.interface';
+import { map } from 'rxjs/operators';
+
+import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms'
+import { Customer, CustomerStatus, CustomerStatusLabelMapping } from '../../customer-dashboard/models/customer.interface';
 import { CustomerDashboardService } from '../../customer-dashboard/customer-dashboard.service';
+import { CustomerValidators } from '../customer.validators';
 
 @Component({
     selector : 'customer-add',
@@ -10,26 +13,31 @@ import { CustomerDashboardService } from '../../customer-dashboard/customer-dash
 })
 
 export class CustomerAddComponent{
-    customers : Customer[];
-    customerStatus : string[] =
-    [
-        "Active", "Hold", "Enquiry", "Closed"
-    ];
+    customer : Customer;
+    // customerStatus : string[] =
+    // [
+    //     "Active", "Hold", "Enquiry", "Closed"
+    // ];
+
+    public CustomerStatusLabelMapping = CustomerStatusLabelMapping;
+    public customerStatus = Object.values(CustomerStatus).filter(value => typeof value === 'number');;
+    
+
+    customerStatus1 : CustomerStatus;
 
     orderType: string[] = ["Tiffin service", "Catering"];
 
     form = new FormGroup({
-        customer: new FormGroup({
-            firstName: new FormControl(),
+            firstName: new FormControl('', [Validators.required]),
             lastName: new FormControl(),
-            phoneNumber: new FormControl(),
+            phoneNumber: new FormControl('', [Validators.required, CustomerValidators.ValidatePhoneNumber],
+                         this.validateCustomerExists.bind(this)),
             postalCode: new FormControl(),
-            status: new FormControl(),
-            orderType: new FormControl(),
-            email: new FormControl(),
+            status: new FormControl('', [Validators.required, CustomerValidators.ValidateStatus]),
+            orderType: new FormControl('', [Validators.required]),
+            email: new FormControl('', [CustomerValidators.ValidateEmail]),
             address: new FormControl(),
             notes: new FormControl()
-        })
     })
 
     constructor(private customerService: CustomerDashboardService)
@@ -38,13 +46,16 @@ export class CustomerAddComponent{
 
     OnSubmit(event: Customer){
         this.customerService.addCustomer(this.form.value)
-        .subscribe((data: Customer)=>{
-          this.customers.map((customer : Customer) => {
-              customer = Object.assign({}, customer, this.form.value);
-            console.log("Added customer:", customer);
-            return customer;
-            });
+        .subscribe((customer: Customer)=>
+        {
+            this.customer = customer;
         },(error) => {throw("Error thrown from API on add customer............!!!!")})           
-        console.log(this.customers);
-        }
+    }
+
+    validateCustomerExists(control: AbstractControl){
+        return this.customerService.checkCustomerExists(control.value)
+        .pipe(map((response: boolean) => {
+            console.log("isCustomerExists?",response);
+            return response ? null : {customerExists : true}}))
+    }
 }

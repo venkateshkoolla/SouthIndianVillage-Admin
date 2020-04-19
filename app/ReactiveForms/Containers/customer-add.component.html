@@ -1,21 +1,37 @@
 <div>
     <form [formGroup]= "form" (ngSubmit) = "OnSubmit($event)">
-    <div formGroupName= "customer" class = "subdiv">
+    <div class = "subdiv">
     <label>FirstName:
         <input type = "text" placeholder = "" formControlName = "firstName">
     </label>
+    <div class="error" *ngIf= "form.get('firstName').hasError('required') && form.get('firstName').touched">
+        FirstName is required
+    </div>
     <label>LastName:
         <input type = "text" placeholder = "" formControlName = "lastName">
     </label>
     <label> PhoneNumber:
-        <input type = "text" placeholder = "" formControlName = "phoneNumber">
+        <input type = "text" placeholder = "xxx-xxx-xxxx" formControlName = "phoneNumber">
     </label>
+    <div class = "error" *ngIf= "form.get('phoneNumber').hasError('required') && form.get('phoneNumber').touched">
+        PhoneNumber is required
+    </div>
+    <div class = "error" *ngIf= "form.get('phoneNumber').hasError('inValidPhoneNumber') && form.get('phoneNumber').touched">
+        Invalid phone number
+    </div>
+    <div class = "error" *ngIf= "form.get('phoneNumber').hasError('customerExists') && form.get('phoneNumber').touched">
+        Custmer already exists with this phone number
+    </div>
     <label> PostalCode:
         <input type = "text" placeholder = "" formControlName = "postalCode">
     </label>
     <label> Email:
         <input type = "text" placeholder = "" formControlName = "email">
     </label>
+    <div class = "error" *ngIf= "form.get('email').hasError('invalidEmail') 
+    && form.get('email').touched">
+        Invalid email
+    </div>
     <label> Address:
         <input type = "text" placeholder = "" formControlName = "address">
     </label>
@@ -25,10 +41,18 @@
             <option value="">Select status</option>
             <option *ngFor= "let status of customerStatus" 
                 [value] = "status">
-                {{status}}
+                {{CustomerStatusLabelMapping[status]}}
             </option>
         </select>
     </label>
+    <div class = "error" *ngIf= "form.get('status').hasError('required') 
+    && form.get('status').touched ">
+        Status required
+    </div>
+    <div class = "error" *ngIf= "form.get('status').hasError('ValidateStatus') 
+        && form.get('status').touched ">
+        Invalid status
+    </div>
     <label
     > OrderType:
         <select formControlName = "orderType">
@@ -39,6 +63,10 @@
             </option>
         </select>
     </label>
+    <div class = "error" *ngIf= "form.get('orderType').hasError('required') 
+    && form.get('orderType').touched">
+        Invalid OrderType
+    </div>
     <label> Notes:
         <textarea type = "text" placeholder = "Add notes..." formControlName = "notes">
         </textarea>
@@ -47,7 +75,7 @@
     <div class = "subdiv">
         <button type = "submit" [disabled] = "form.invalid" >Create</button>
     </div>
-
-    <pre>{{form.value | json}}</pre>
+<!-- 
+    <pre>{{form.value | json}}</pre> -->
     </form>
 </div>

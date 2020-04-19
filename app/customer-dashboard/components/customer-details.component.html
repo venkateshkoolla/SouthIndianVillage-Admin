@@ -57,7 +57,7 @@
       <input type="text" [value] = "detail.phoneNumber"
       (input) = "OnPhoneNumberChange(phoneNumber.value)" #phoneNumber>
     </div>
-    <div>{{detail.phoneNumber}}</div>
+    <div *ngIf = "!editing">{{detail.phoneNumber}}</div>
   </div>
   <div class = "column" >
     <div *ngIf = "editing">

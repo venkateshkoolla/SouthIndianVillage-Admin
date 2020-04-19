@@ -26,6 +26,13 @@ export   interface CustomerDetail{
     Hold = 4   
   }
 
+  export const CustomerStatusLabelMapping = {
+    [CustomerStatus.Active]: "Active",
+    [CustomerStatus.Enquiry]: "Enquiry",
+    [CustomerStatus.Closed]: "Closed",
+    [CustomerStatus.Hold]: "Hold",
+  }
+
   export enum OrderType{
     TiffinService,
     Catering

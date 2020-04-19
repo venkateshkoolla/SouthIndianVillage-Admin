@@ -51,4 +51,19 @@ export class CustomerDashboardService{
                    .delete(`${CUSTOMER_API}/${id}`)
                    .pipe(map((response: Response) => response.json()))
     }
+
+    checkCustomerExists(phoneNumber: string) : Observable<boolean>{
+        let search = new URLSearchParams();
+        search.set('phoneNumber', phoneNumber);
+        console.log("request params", {search});
+
+       return this.http.get(`${CUSTOMER_API}`, {search})
+            .pipe(map((response: Response) => response.json()))
+            .pipe(map((response: any[]) => !!response.length))
+            .pipe(catchError(err => 
+                {
+                    console.log('Handling error locally and rethrowing it...', err);
+                    return throwError(err);
+                }))
+    }
 }
