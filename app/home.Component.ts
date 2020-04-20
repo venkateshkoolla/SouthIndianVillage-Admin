@@ -4,7 +4,7 @@ import {Component} from '@angular/core'
     selector: 'app-home',
     template: `
     <div>
-        <h3>SouthIndianVillage Customer dashboard</h3>
+        <h3>Welcome to SouthIndianVillage</h3>
     </div>
     `
 })

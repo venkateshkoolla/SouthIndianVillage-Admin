@@ -17,15 +17,17 @@ import { LoginRegistrationComponent } from './auth-form/login-registration.compo
 import { AuthRememberComponent } from './auth-form/auth-remember.component';
 import { CreditCardComponent } from './credit-card/credit-card.component';
 import { CustomerAddComponent } from './ReactiveForms/Containers/customer-add.component';
+import { CustomerDashboardComponent } from './customer-dashboard/containers/customer-dashboard/customer-dashboard.component';
+import { AppRoutingModule } from './app-routing.module';
 
-
-const routes : Routes = [
-  {path:'' , component: LoginRegistrationComponent, pathMatch: 'full'  },
-  {path:'home' , component: HomeComponent, pathMatch: 'full'  },
-  {path:'payment' , component: CreditCardComponent, pathMatch: 'full'  },
-  {path:'AddCustomer' , component: CustomerAddComponent, pathMatch: 'full'  },
-  {path:'**' , component: HomeComponent  }
-]
+// const routes : Routes = [
+//   {path:'' , component: LoginRegistrationComponent, pathMatch: 'full'  },
+//   {path:'Home' , component: HomeComponent, pathMatch: 'full'  },
+//   // {path:'customers' , component: CustomerDashboardComponent, pathMatch: 'full'  },
+//   {path:'Payment' , component: CreditCardComponent, pathMatch: 'full'  },
+//   {path:'AddCustomer' , component: CustomerAddComponent, pathMatch: 'full'  },
+//   // {path:'**' , component: HomeComponent  }
+//]
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ const routes : Routes = [
     CreditCardComponent,
     CustomerAddComponent,
     NotFoundComponent
+    
   ],
 
   imports: [
@@ -44,7 +47,8 @@ const routes : Routes = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    RouterModule.forRoot(routes),
+    AppRoutingModule,
+    // RouterModule.forRoot(routes, {enableTracing: true}),
     MatButtonModule,
     ConfirmationPopoverModule.forRoot({confirmButtonType: "Danger"}),
 

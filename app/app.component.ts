@@ -12,21 +12,7 @@ interface Nav{
 @Component({
   selector: 'app-root',
   styleUrls: ['app.component.scss'],
-  template: `
-  
-    <div class = "app-root">
-    <nav class="nav">
-        <a 
-          *ngFor="let item of nav"
-          [routerLink]="item.link"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: item.exact }">
-          {{ item.name }}
-        </a>
-      </nav>      
-      <router-outlet></router-outlet>
-    </div>
-  `
+  templateUrl: 'app.component.html'
 })
 export class AppComponent {
   nav: Nav[] = [
@@ -36,25 +22,25 @@ export class AppComponent {
       exact: true
     },
     {
-      link: '/Home',
-      name: 'HOME',
-      exact: true
-    },
-    {
-      link: '/customers',
+      link: '/Customers',
       name: 'CUSTOMERS',
       exact: true
     },
     {
-      link: '/AddCustomer',
-      name: 'ADD-CUSTOMER',
+      link: '/Home',
+      name: 'HOME',
       exact: true
-    },  
-    {
-      link: '/payment',
-      name: 'PAYMENT',
-      exact: true
-    }
+    },
+    // {
+    //   link: '/AddCustomer',
+    //   name: 'ADD-CUSTOMER',
+    //   exact: true
+    // },  
+    // {
+    //   link: '/Payment',
+    //   name: 'PAYMENT',
+    //   exact: true
+    // }
     // {
     //   link: '/oops',
     //   name: '404',

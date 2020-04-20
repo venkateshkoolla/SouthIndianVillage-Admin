@@ -21,12 +21,7 @@ import {ConfirmationPopoverModule} from 'angular-confirmation-popover'
 import {CustomerDashboardService} from './customer-dashboard.service'
 
 const routes : Routes = [
-    {
-      path:'customers',
-      children: [
-        {path: '', component: CustomerDashboardComponent}, 
-        {path: ':id', component: CustomerViewerComponent}],
-     }
+    { path:'Customers', component : CustomerDashboardComponent, pathMatch: 'full'}
   ]
   
   @NgModule({
@@ -51,6 +46,7 @@ const routes : Routes = [
         RouterModule
     ],
 
+    // exports : [CustomerDashboardComponent, CustomerViewerComponent, RouterModule]
     exports : [CustomerDashboardComponent, CustomerViewerComponent, RouterModule]
   })
   export class CustomerDashboardModule {}
