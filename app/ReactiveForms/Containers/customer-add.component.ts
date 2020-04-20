@@ -14,6 +14,7 @@ import { CustomerValidators } from '../customer.validators';
 
 export class CustomerAddComponent{
     customer : Customer;
+    isCustomerExists: boolean = false;
     // customerStatus : string[] =
     // [
     //     "Active", "Hold", "Enquiry", "Closed"
@@ -49,13 +50,23 @@ export class CustomerAddComponent{
         .subscribe((customer: Customer)=>
         {
             this.customer = customer;
-        },(error) => {throw("Error thrown from API on add customer............!!!!")})           
+        },(error) => {throw("Error thrown from API on add customer............!!!!")})
     }
 
-    validateCustomerExists(control: AbstractControl){
-        return this.customerService.checkCustomerExists(control.value)
-        .pipe(map((response: boolean) => {
-            console.log("isCustomerExists?",response);
-            return response ? null : {customerExists : true}}))
+    validateCustomerExists(control: AbstractControl)
+    {
+        this.isCustomerExists = false;
+        return this.customerService.getCustomers()
+            .pipe(map((response: Customer[]) =>
+                {
+                    response.forEach(element => 
+                    {
+                        if(element.phoneNumber ==control.value)
+                        {
+                            this.isCustomerExists = true;
+                            return this.isCustomerExists;
+                        }
+                    });
+                }))
     }
 }

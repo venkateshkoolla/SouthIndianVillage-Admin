@@ -55,7 +55,6 @@ export class CustomerDashboardComponent
 }
 
   handleEdit(event: Customer){
-    console.log("new logging on edit!!!!!!!!!",event);
       this.customerService.updateCustomer(event)
       .subscribe((data: Customer)=>{
         this.customers.map((customer : Customer) => {
@@ -66,7 +65,6 @@ export class CustomerDashboardComponent
           return customer;
           });
       },(error) => {throw("Error thrown from API on Edit............!!!!")})           
-      console.log(this.customers);
       }
 
 }

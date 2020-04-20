@@ -16,6 +16,6 @@ export class CustomerValidators{
 
     static ValidateStatus(control: AbstractControl){
         const valid = control.value == null;
-        return valid? null : {invalidSatus : true}    
+        return valid? null : {invalidSatus : true}
     }
 }

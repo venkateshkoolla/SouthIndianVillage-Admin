@@ -20,8 +20,6 @@ export class CustomerDashboardService{
     }
 
     getCustomer(id : number): Observable<Customer>    {
-        console.log("reached service level!");
-        console.log(id.toString());
         return this.http
                    .get(`${CUSTOMER_API}/${id}`)
                    .pipe(map((response: Response) => response.json()))}
@@ -33,9 +31,7 @@ export class CustomerDashboardService{
         let options = new RequestOptions(
            {headers : headers}
         );
-        
-        console.log(customer);
-        return this.http
+                return this.http
                    .put(`${CUSTOMER_API}/${customer.id}`, customer, options)
                    .pipe(map((response: Response) => response.json()))                                     
     }
@@ -54,9 +50,7 @@ export class CustomerDashboardService{
 
     checkCustomerExists(phoneNumber: string) : Observable<boolean>{
         let search = new URLSearchParams();
-        search.set('phoneNumber', phoneNumber);
-        console.log("request params", {search});
-
+        
        return this.http.get(`${CUSTOMER_API}`, {search})
             .pipe(map((response: Response) => response.json()))
             .pipe(map((response: any[]) => !!response.length))

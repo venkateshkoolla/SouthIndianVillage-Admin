@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CustomerDashboardModule } from './customer-dashboard/customer-dashboard.module'
 import { AppComponent } from './app.component';
 import { HttpModule } from '@angular/http';
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover'
 import {RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home.Component';
 import { NotFoundComponent } from './not-Found.Component';
@@ -45,6 +46,7 @@ const routes : Routes = [
     CommonModule,
     RouterModule.forRoot(routes),
     MatButtonModule,
+    ConfirmationPopoverModule.forRoot({confirmButtonType: "Danger"}),
 
     // custom modules
     CustomerDashboardModule    

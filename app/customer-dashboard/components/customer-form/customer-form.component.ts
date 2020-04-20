@@ -7,7 +7,7 @@ import { Customer } from '../../models/customer.interface'
     template: `
     <form>
     Form!!!!
-    {{detail | json}}
+        {{detail | json}}
     </form>
     `
 })

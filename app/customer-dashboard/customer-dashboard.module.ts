@@ -14,6 +14,7 @@ import { CustomerViewerComponent } from './containers/customer-viewer/customer-v
 //components
 import { CustomerCountComponent } from './components/customer-count.component'
 import { CustomerDetailsComponent } from './components/customer-details.component'
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover'
 
 
 // services
@@ -41,7 +42,8 @@ const routes : Routes = [
       HttpModule,
       FormsModule,
       RouterModule.forRoot(routes),
-      MatButtonModule
+      MatButtonModule,
+      ConfirmationPopoverModule.forRoot({confirmButtonType: "Danger"})
     ],
     providers: [
         CustomerDashboardService,

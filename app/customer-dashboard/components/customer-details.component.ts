@@ -9,6 +9,11 @@ import { Customer } from '../models/customer.interface'
 
 export class CustomerDetailsComponent{
     
+  popoverTitle = 'Popover title';
+  popoverMessage = 'Popover description';
+  confirmClicked = false;
+  cancelClicked = false;
+  
     @Input()
     detail : Customer
 

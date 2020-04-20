@@ -19,7 +19,7 @@
     <div class = "error" *ngIf= "form.get('phoneNumber').hasError('inValidPhoneNumber') && form.get('phoneNumber').touched">
         Invalid phone number
     </div>
-    <div class = "error" *ngIf= "form.get('phoneNumber').hasError('customerExists') && form.get('phoneNumber').touched">
+    <div class = "error" *ngIf= "isCustomerExists && form.get('phoneNumber').touched">
         Custmer already exists with this phone number
     </div>
     <label> PostalCode:
