@@ -53,20 +53,29 @@ export class CustomerAddComponent{
         },(error) => {throw("Error thrown from API on add customer............!!!!")})
     }
 
+    // validateCustomerExists1(control: AbstractControl)
+    // {
+    //     this.isCustomerExists = false;
+    //     return this.customerService.getCustomers()
+    //         .pipe(map((response: Customer[]) =>
+    //             {
+    //                 response.forEach(element => 
+    //                 {
+    //                     if(element.phoneNumber ==control.value)
+    //                     {
+    //                         this.isCustomerExists = true;
+    //                         return this.isCustomerExists;
+    //                     }
+    //                 });
+    //             }))
+    // }
     validateCustomerExists(control: AbstractControl)
     {
         this.isCustomerExists = false;
-        return this.customerService.getCustomers()
-            .pipe(map((response: Customer[]) =>
+        return this.customerService.checkCustomerExists(control.value)
+            .pipe(map((response: any) =>
                 {
-                    response.forEach(element => 
-                    {
-                        if(element.phoneNumber ==control.value)
-                        {
-                            this.isCustomerExists = true;
-                            return this.isCustomerExists;
-                        }
-                    });
+                    return response ? null : {isCustomerExists: true}
                 }))
     }
 }

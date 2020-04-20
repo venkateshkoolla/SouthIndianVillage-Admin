@@ -51,7 +51,7 @@ export class CustomerDashboardService{
     checkCustomerExists(phoneNumber: string) : Observable<boolean>{
         let search = new URLSearchParams();
         
-       return this.http.get(`${CUSTOMER_API}`, {search})
+       return this.http.get(`${CUSTOMER_API}?phoneNumber=${phoneNumber}`)
             .pipe(map((response: Response) => response.json()))
             .pipe(map((response: any[]) => !!response.length))
             .pipe(catchError(err => 

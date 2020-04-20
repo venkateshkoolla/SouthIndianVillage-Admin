@@ -37,18 +37,6 @@
       "address": "7054 Fairmeadow Crescent",
       "notes": null,
       "id": 5
-    },
-    {
-      "firstName": "Vishwa",
-      "lastName": "Koolla",
-      "phoneNumber": "647-983-5701",
-      "postalCode": "L5N 8R5",
-      "status": "1",
-      "orderType": "Tiffin service",
-      "email": "vishwa.koolla@gmail.com",
-      "address": "7054 Fairmeadow Crescent",
-      "notes": null,
-      "id": 6
     }
   ]
 }
