@@ -2,25 +2,13 @@ import {Component, OnInit} from '@angular/core'
 import {Customer, CustomerStatus, CustomerDetail} from '../../models/customer.interface'
 import { stringify } from 'querystring';
 import {CustomerDashboardService} from '../../customer-dashboard.service'
+import {Router} from '@angular/router';
+
 
 @Component({
     selector : 'customer-dashboard',
     styleUrls : ['customer-dashboard.component.scss'],
-    template:`
-    <div> 
-    <customer-count [items] = "customers"></customer-count>
-    <br>
-    
-  <div id = "customer-details">
-  <customer-details *ngFor="let customer of customers; index as i"
-        [rowNumber] = "i"
-        [detail] = "customer"
-        (edit) = "handleEdit($event)"
-        (remove) = "handleRemove($event)">
-    </customer-details>
-  </div>
-    </div>
-    ` 
+    templateUrl:'customer-dashboard.component.html'
 })
 
 export class CustomerDashboardComponent 
@@ -33,7 +21,8 @@ export class CustomerDashboardComponent
   handleChange(value : string){
     this.name = value;
   }
-  constructor(private customerService : CustomerDashboardService)
+  constructor(private customerService : CustomerDashboardService,
+    private router: Router)
   {
   }
 
@@ -66,5 +55,9 @@ export class CustomerDashboardComponent
           });
       },(error) => {throw("Error thrown from API on Edit............!!!!")})           
       }
+
+  btnClick= function () {
+         this.router.navigate(['/AddCustomer']);
+};
 
 }

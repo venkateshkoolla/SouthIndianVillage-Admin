@@ -3,11 +3,7 @@ import { Customer, CustomerStatus } from '../models/customer.interface'
 
 @Component({
     selector : 'customer-count',
-    template : `
-    <div>
-    Active customers : {{ActiveCustomers()}} / {{items?.length}}
-    </div>
-    `
+    templateUrl : 'customer-count.component.html'
 })
 
 export class CustomerCountComponent{

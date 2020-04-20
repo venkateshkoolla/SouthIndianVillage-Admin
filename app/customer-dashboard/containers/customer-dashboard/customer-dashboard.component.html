@@ -1,29 +1,16 @@
-<!doctype html>
-<html>
-<head>
-  <base href="/">
-  <title>Ultimate Angular</title>
-  <link rel="stylesheet" href="/css/app.css">
-</head>
-<body>
-  <app-root></app-root>
-
-  <script src="/vendor/vendor.js"></script>
-  <script src="/build/app.js"></script>
-  <div> 
-    <h3>SouthIndianVillage Customers dashboard</h3>
-    <ul>
-      <li *ngFor="let customer of customers">
-         <span class = "status"
-        [class.Active] = "customer.Active"></span>
-        {{customer.firstName}} 
-        {{customer.lastName}}
-        {{customer.phoneNumber}}
-        <!-- <div *ngIf = "customer.Children?.length  > 0">
-        Children: {{customer.Children?.length}}
-        </div> -->
-      </li>
-    </ul>
-    </div>
-</body>
-</html>
+<div> 
+  <customer-count [items] = "customers"></customer-count>
+  <div style="padding: 10px;">  
+    <button mat-button type="button" (click)="btnClick()">
+      ADD CUSTOMER
+    </button>  
+  </div>
+<div id = "customer-details" style="padding: 10px;">
+<customer-details *ngFor="let customer of customers; index as i"
+      [rowNumber] = "i"
+      [detail] = "customer"
+      (edit) = "handleEdit($event)"
+      (remove) = "handleRemove($event)">
+  </customer-details>
+</div>
+  </div>
