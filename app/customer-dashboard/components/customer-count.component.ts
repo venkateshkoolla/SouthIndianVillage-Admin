@@ -15,8 +15,6 @@ export class CustomerCountComponent{
             return;
         }
         return this.items.filter((customer : Customer) => {
-            console.log("Customer status:", customer.status);
-            console.log("Customer object:", customer);
             return customer.status == CustomerStatus.Active;
         }).length;
     }

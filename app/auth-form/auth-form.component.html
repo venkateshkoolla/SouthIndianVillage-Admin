@@ -1,0 +1,13 @@
+<div class = "div">
+    <form class = "form" (ngSubmit) = "OnSubmit(form.value)" #form = "ngForm" >
+        <ng-Content select= "h3"></ng-Content>        
+            <label>
+                Email:<input type="text" name="email" ngModel  #email>
+            </label>
+            <label>
+                Password:<input type="text" name= "password" ngModel #password>
+            </label>        
+        <ng-Content select = "auth-remember"></ng-Content>
+        <ng-Content select = "button"></ng-Content>
+    </form>
+</div>

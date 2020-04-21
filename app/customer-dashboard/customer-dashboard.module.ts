@@ -19,6 +19,7 @@ import {ConfirmationPopoverModule} from 'angular-confirmation-popover'
 
 // services
 import {CustomerDashboardService} from './customer-dashboard.service'
+import { CanActivateRouteGuard } from '../guards/canActivateRouteGuard';
 
 const routes : Routes = [
     { path:'Customers', component : CustomerDashboardComponent, pathMatch: 'full'}
@@ -30,7 +31,7 @@ const routes : Routes = [
       CustomerViewerComponent,
       CustomerCountComponent,
       CustomerDetailsComponent
-      
+            
     ],
     imports: [
       CommonModule,
@@ -38,12 +39,14 @@ const routes : Routes = [
       FormsModule,
       RouterModule.forRoot(routes),
       MatButtonModule,
-      ConfirmationPopoverModule.forRoot({confirmButtonType: "Danger"})
+      ConfirmationPopoverModule.forRoot({confirmButtonType: "Danger"}),
+      // CanActivateRouteGuard
     ],
     providers: [
         CustomerDashboardService,
         CustomerViewerComponent, 
-        RouterModule
+        RouterModule,
+        // CanActivateRouteGuard
     ],
 
     // exports : [CustomerDashboardComponent, CustomerViewerComponent, RouterModule]
