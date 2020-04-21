@@ -1,9 +1,14 @@
 <div class = "app-root">
     <nav class="nav">
         <a routerLink="/home">Home</a>
-        <a routerLink="/login">Login</a>
         <a routerLink="/customers">Customers</a>
         <a routerLink="/Payment">Payment</a>
+        <div style="display : inline-block">
+            <a routerLink="/login" *ngIf = "!isLoggedIn">Login</a>
+        </div>
+        <div style="display : inline-block" >
+            <a routerLink="/logout" (click) = "onLogoutClick()" *ngIf = "isLoggedIn">Logout</a>
+        </div>
       </nav>
     </div>
     <div class = "app-root">

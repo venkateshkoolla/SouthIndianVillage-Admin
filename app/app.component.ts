@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpModule } from '@angular/http';
+import { Subject } from 'rxjs';
+import {Router} from '@angular/router';
 
 
-interface Nav{
+interface Nav {
   link: string
   name: string
-  exact : boolean
+  exact: boolean
 }
 
 @Component({
@@ -15,6 +17,26 @@ interface Nav{
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+
+  public static returned: Subject<any> = new Subject();
+
+  constructor(private route: Router){
+    AppComponent.returned.subscribe(res => {
+      this.isLoggedIn = true;
+   });
+  }
+  
+  isLoggedIn : boolean = false;
+  isAuthenticated(){
+    console.log("event fired , authenticated");
+    this.isLoggedIn = true;
+  }
+
+  onLogoutClick(){
+    localStorage.clear();
+    this.isLoggedIn = false;
+    this.route.navigate(['/login']);
+  }
   nav: Nav[] = [
     {
       link: '/',
@@ -31,27 +53,6 @@ export class AppComponent {
       name: 'HOME',
       exact: true
     },
-    // {
-    //   link: '/AddCustomer',
-    //   name: 'ADD-CUSTOMER',
-    //   exact: true
-    // },  
-    // {
-    //   link: '/Payment',
-    //   name: 'PAYMENT',
-    //   exact: true
-    // }
-    // {
-    //   link: '/oops',
-    //   name: '404',
-    //   exact: false
-    // }
   ];
 }
 
-// <div>
-//       <customer-dashboard></customer-dashboard>
-//      </div>    
-//      <div>
-//      <customer-viewer></customer-viewer>
-//     </div>

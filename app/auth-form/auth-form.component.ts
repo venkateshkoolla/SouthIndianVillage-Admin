@@ -34,11 +34,11 @@ export class AuthFormComponent {
                 }
                 else {
                     console.log('token defined');
+                    this.submitted.emit(value);
                     this.route.navigate(['/customers']);
                 }
             });
 
-        this.submitted.emit(value);
     }
 
     ngAfterViewInit() {

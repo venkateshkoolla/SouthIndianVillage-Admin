@@ -1,18 +1,17 @@
-import {Component} from '@angular/core'
+import {Component, EventEmitter, Output} from '@angular/core'
 import { User } from './auth-form.interface';
+import { AppComponent } from '../app.component';
 
 @Component({
     selector: 'login-registration',
     styleUrls : ['login-registration.component.scss'],
     template: `
-    <div>
-    
+    <div>    
     <auth-form
         (submitted)="createUser($event)">
         <h3>Create account</h3>
         <button type = "submit">Submit</button>
     </auth-form>
-    
     
     <auth-form
         (submitted)="loginUser($event)">
@@ -31,13 +30,18 @@ import { User } from './auth-form.interface';
 export class LoginRegistrationComponent{
 
     remember : boolean = false;
+    
+    // @Output()
+    // isLogin : EventEmitter<boolean> = new EventEmitter();
 
-    createUser(user: User) {
+    createUser(user: User) {        
         console.log('Create account', user);
       }
     
       loginUser(user: User) {
-        console.log('Login', user, this.remember);
+        AppComponent.returned.next(true);
+        // this.isLogin.emit(true);
+        console.log('Loggedin as', user, this.remember);
       }
 
       rememberMe(value: boolean){
