@@ -1,15 +1,19 @@
-import {Component, EventEmitter, Output} from '@angular/core'
-import { User } from './auth-form.interface';
+import { Component, EventEmitter, Output } from '@angular/core'
+import { User} from './auth-form.interface';
+import { UserRegistration} from './user-registration.interface';
 import { AppComponent } from '../app.component';
+import { AuthFormService } from './auth-form.service';
+import { Router } from '@angular/router'
 
 @Component({
     selector: 'login-registration',
-    styleUrls : ['login-registration.component.scss'],
+    styleUrls: ['login-registration.component.scss'],
     template: `
     <div>    
     <auth-form
         (submitted)="createUser($event)">
         <h3>Create account</h3>
+        <h1 *ngIf= "success">Registration success.</h1>
         <button type = "submit">Submit</button>
     </auth-form>
     
@@ -19,6 +23,7 @@ import { AppComponent } from '../app.component';
             <auth-remember
                 (remember) = "rememberMe($event)">
             </auth-remember>
+            <h1>Invalid username or password. Please try again.</h1>
         <button type = "submit">Login</button>
     </auth-form>    
     
@@ -27,25 +32,63 @@ import { AppComponent } from '../app.component';
 
 })
 
-export class LoginRegistrationComponent{
+export class LoginRegistrationComponent {
 
-    remember : boolean = false;
-    
+    constructor(private authService: AuthFormService, private route: Router) {
+
+    }
+    remember: boolean = false;
+    success: boolean = false;
+    error: string;
+
     // @Output()
     // isLogin : EventEmitter<boolean> = new EventEmitter();
 
-    createUser(user: User) {        
+    createUser(user: User) {
         console.log('Create account', user);
-      }
-    
-      loginUser(user: User) {
-        AppComponent.returned.next(true);
-        // this.isLogin.emit(true);
-        console.log('Loggedin as', user, this.remember);
-      }
+        let r : UserRegistration = {
+                Name: "test",
+                Email: user.email,
+                Password: user.password
+        };
 
-      rememberMe(value: boolean){
+        this.authService.register(r)
+        .subscribe(
+            result => {
+                if(result){
+                    this.success = true;
+                }
+            }, error => {
+                console.log("error on registration",error);
+                this.error = error;
+            })
+    }
+
+    loginUser(user: User) {
+        this.authService.login(user)
+            .subscribe((response: boolean) => {
+                console.log("response",response);
+                if(response) localStorage.setItem('isLoggedIn', 'true');
+               // if (localStorage.getItem("token") == null || localStorage.getItem("token") == undefined) {
+                   if(!response)
+                    this.route.navigate(['/login']);
+                
+                else {
+                    // this.submitted.emit(user);
+                    AppComponent.returned.next(true);
+                    this.route.navigate(['/customers']);
+                }
+            });
+    }
+
+    // loginUser(user: User){
+    //     localStorage.setItem('user', JSON.stringify(user.email));
+    //     localStorage.setItem('password', JSON.stringify(user.password));
+    //     this.authService.login();
+    // }
+
+    rememberMe(value: boolean) {
         console.log("remember event received");
         this.remember = value;
-      }
+    }
 }

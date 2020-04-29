@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { Subject } from 'rxjs';
 import {Router} from '@angular/router';
 
-
 interface Nav {
   link: string
   name: string
@@ -28,7 +27,6 @@ export class AppComponent {
   
   isLoggedIn : boolean = false;
   isAuthenticated(){
-    console.log("event fired , authenticated");
     this.isLoggedIn = true;
   }
 

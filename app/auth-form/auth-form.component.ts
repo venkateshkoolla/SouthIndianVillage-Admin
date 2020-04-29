@@ -25,19 +25,19 @@ export class AuthFormComponent {
     @Output()
     submitted: EventEmitter<User> = new EventEmitter();
 
-    OnSubmit(value: User) {
-        this.authService.getAccessToken(value.email)
-            .subscribe((token: string) => {
-                localStorage.setItem('token', token);
-                if (localStorage.getItem("token") == null || localStorage.getItem("token") == undefined) {
-                    this.route.navigate(['/login']);
-                }
-                else {
-                    console.log('token defined');
-                    this.submitted.emit(value);
-                    this.route.navigate(['/customers']);
-                }
-            });
+    OnSubmit(user: User) {
+        this.submitted.emit(user);
+        // this.authService.login(user)
+        //     .subscribe((token: string) => {
+        //         localStorage.setItem('token', token);
+        //         if (localStorage.getItem("token") == null || localStorage.getItem("token") == undefined) {
+        //             this.route.navigate(['/login']);
+        //         }
+        //         else {
+        //             this.submitted.emit(user);
+        //             this.route.navigate(['/customers']);
+        //         }
+        //     });
 
     }
 
