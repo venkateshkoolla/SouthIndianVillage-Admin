@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core'
-import { User} from './auth-form.interface';
-import { UserRegistration} from './user-registration.interface';
+import { User } from './auth-form.interface';
+import { UserRegistration } from './user-registration.interface';
 import { AppComponent } from '../app.component';
 import { AuthFormService } from './auth-form.service';
 import { Router } from '@angular/router'
@@ -46,37 +46,42 @@ export class LoginRegistrationComponent {
 
     createUser(user: User) {
         console.log('Create account', user);
-        let r : UserRegistration = {
-                Name: "test",
-                Email: user.email,
-                Password: user.password
+        let r: UserRegistration = {
+            Name: "test",
+            Email: user.email,
+            Password: user.password
         };
 
         this.authService.register(r)
-        .subscribe(
-            result => {
-                if(result){
-                    this.success = true;
-                }
-            }, error => {
-                console.log("error on registration",error);
-                this.error = error;
-            })
+            .subscribe(
+                result => {
+                    if (result) {
+                        this.success = true;
+                    }
+                }, error => {
+                    console.log("error on registration", error);
+                    this.error = error;
+                })
     }
 
     loginUser(user: User) {
         this.authService.login(user)
             .subscribe((response: boolean) => {
-                console.log("response",response);
-                if(response) localStorage.setItem('isLoggedIn', 'true');
-               // if (localStorage.getItem("token") == null || localStorage.getItem("token") == undefined) {
-                   if(!response)
+                console.log("response", response);
+                if (response) localStorage.setItem('isLoggedIn', 'true');
+                if (!response)
                     this.route.navigate(['/login']);
-                
+
                 else {
+                    this.authService.getToken()
+                        .subscribe((token: string) => {
+                            if (token.length > 0) {
+                                console.log("accessToken response:", token)
+                                AppComponent.returned.next(true);
+                                this.route.navigate(['/customers']);
+                            }
+                        })
                     // this.submitted.emit(user);
-                    AppComponent.returned.next(true);
-                    this.route.navigate(['/customers']);
                 }
             });
     }

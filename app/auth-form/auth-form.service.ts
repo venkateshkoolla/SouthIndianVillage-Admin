@@ -16,16 +16,6 @@ export class AuthFormService {
     }
 
     login(user: User): Observable<boolean> {
-        //let body = JSON.stringify(user);
-        // let body = JSON.stringify({
-        //     "grant_type": 'password',
-        //     "client_id": 'angular_southindianvillage_admin',
-        //     client_secret: 'secret',
-        //     // username: user.email,
-        //     // password: user.password,
-        //     scope: 'api.read'
-        // });
-
         this.user = user;
         let body = JSON.stringify(user);
         let headers = new Headers({
@@ -39,12 +29,44 @@ export class AuthFormService {
         );
 
         var result = this.http.post(`${IDENTITY_SERVER}/api/Account/Login`, user, options)
-            .pipe(map(response =>response.json()))
+            .pipe(map((response: Response) => {
+                if (response.ok) {
+                    this.user.isAuthenticated = true;
+                    return response.ok;
+                }
+            }))
             .pipe(catchError(this.handleError));
         console.log("Login response", result);
         return result;
     }
 
+    isAuthenticated(): boolean {
+        return this.user != null && !this.user.isAuthenticated;
+    }
+
+    getToken(): Observable<string> {
+
+        var body = JSON.stringify({
+            'grant_type': 'client_credentials',
+            'client_id': 'angular_southindianvillage_admin'
+        })
+
+
+        let formData = new FormData();
+        formData.append('grant_type', 'client_credentials');
+        formData.append('client_id', 'angular_southindianvillage_admin');
+
+        console.log("clientid", formData.get('client_id'));
+        console.log("grant", formData.get('grant_type'));
+        // Do not try to send the headers. 
+        var result = this.http.post(`${IDENTITY_SERVER}/connect/token`, formData)
+            .pipe(map((response: Response) => {
+                this.user.access_token = response.text();
+                return response.text()
+            }))
+            .pipe(catchError(this.handleError));
+        return result;
+    }
 
     //https://localhost:44393/api/Account
     register(userRegistration: UserRegistration) {
