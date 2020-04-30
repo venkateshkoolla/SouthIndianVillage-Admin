@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpModule } from '@angular/http';
 import { Subject } from 'rxjs';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthFormService } from './auth-form/auth-form.service';
 
 interface Nav {
   link: string
@@ -18,22 +19,27 @@ interface Nav {
 export class AppComponent {
 
   public static returned: Subject<any> = new Subject();
+  isLoggedIn: boolean = false;
 
-  constructor(private route: Router){
+  constructor(private route: Router, private authService: AuthFormService) {
     AppComponent.returned.subscribe(res => {
       this.isLoggedIn = true;
-   });
-  }
-  
-  isLoggedIn : boolean = false;
-  isAuthenticated(){
-    this.isLoggedIn = true;
+    });
   }
 
-  onLogoutClick(){
-    localStorage.clear();
+  // isAuthenticated(){
+  //   this.isLoggedIn = true;
+  // }
+
+  onLogoutClick() {
+    // localStorage.clear();
     this.isLoggedIn = false;
-    this.route.navigate(['/login']);
+    this.authService.logout()
+      .subscribe((returnUrl: string) => {
+        console.log("LogoutResponse:", returnUrl);
+        this.route.navigate(['/home']);
+      })
+
   }
   nav: Nav[] = [
     {

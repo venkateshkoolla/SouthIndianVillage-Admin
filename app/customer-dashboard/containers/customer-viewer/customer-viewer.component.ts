@@ -58,14 +58,7 @@ export class CustomerViewerComponent implements OnInit {
     private customerService: CustomerDashboardService) {}
 
   ngOnInit() {   
-    console.log("route params:", this.route.params);
-    console.log("activatedRoute",this.route);
-       
-    //  this.route.params.forEach((data: Customer) => {
-    //       this.customerService.getCustomer(data.id)})
-    // .then(data => this.customer = data);
-
-
+ 
     this.route.params.forEach((params: Params) => {
       if (params['id'] !== undefined) {
         let id = +params['id'];

@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core'
+import { Component, EventEmitter, Output, ElementRef, ViewChild, Input } from '@angular/core'
 import { User } from './auth-form.interface';
 import { AuthFormService } from './auth-form.service';
 import { Router } from '@angular/router';
 import { access } from 'fs';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
     selector: 'auth-form',
@@ -11,10 +12,14 @@ import { access } from 'fs';
 })
 
 export class AuthFormComponent {
-
-    constructor(private authService: AuthFormService, private route: Router) {
-
+    constructor() {
     }
+
+    formControls = new FormGroup({
+        first: new FormControl('email'),
+        last: new FormControl('password')
+     });
+     
 
     @ViewChild('email')
     email: ElementRef;
@@ -25,20 +30,11 @@ export class AuthFormComponent {
     @Output()
     submitted: EventEmitter<User> = new EventEmitter();
 
-    OnSubmit(user: User) {
-        this.submitted.emit(user);
-        // this.authService.login(user)
-        //     .subscribe((token: string) => {
-        //         localStorage.setItem('token', token);
-        //         if (localStorage.getItem("token") == null || localStorage.getItem("token") == undefined) {
-        //             this.route.navigate(['/login']);
-        //         }
-        //         else {
-        //             this.submitted.emit(user);
-        //             this.route.navigate(['/customers']);
-        //         }
-        //     });
+    @Input()
+    isRegistrationDone: EventEmitter<boolean> = new EventEmitter();
 
+    onSubmit(user: User) {
+        this.submitted.emit(user);        
     }
 
     ngAfterViewInit() {
@@ -46,5 +42,9 @@ export class AuthFormComponent {
         this.email.nativeElement.focus();
         this.password.nativeElement.setAttribute('placeholder', 'Enter password');
         console.log(this.email);
+    }
+
+    ngOnChanges() {
+
     }
 }

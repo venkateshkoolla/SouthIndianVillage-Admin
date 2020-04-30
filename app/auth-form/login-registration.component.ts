@@ -11,10 +11,12 @@ import { Router } from '@angular/router'
     template: `
     <div>    
     <auth-form
-        (submitted)="createUser($event)">
+        (submitted)="createUser($event)"
+        [isRegistrationDone]=isRegistrationSuccess>
         <h3>Create account</h3>
-        <h1 *ngIf= "success">Registration success.</h1>
-        <button type = "submit">Submit</button>
+        <h1 *ngIf= "isRegistrationSuccess">Registration success.Please login!</h1>
+        <h1 *ngIf= "registrationError && !isRegistrationSuccess">registrationError</h1>
+        <button type = "submit">Register</button>
     </auth-form>
     
     <auth-form
@@ -23,7 +25,7 @@ import { Router } from '@angular/router'
             <auth-remember
                 (remember) = "rememberMe($event)">
             </auth-remember>
-            <h1>Invalid username or password. Please try again.</h1>
+            <h1 *ngIf = "loginError && !isLoginSuccess">Invalid username or password. Please try again.</h1>
         <button type = "submit">Login</button>
     </auth-form>    
     
@@ -38,8 +40,10 @@ export class LoginRegistrationComponent {
 
     }
     remember: boolean = false;
-    success: boolean = false;
-    error: string;
+    isRegistrationSuccess: boolean = false;
+    isLoginSuccess : boolean = false;
+    registrationError: string;
+    loginError : string;
 
     // @Output()
     // isLogin : EventEmitter<boolean> = new EventEmitter();
@@ -56,11 +60,13 @@ export class LoginRegistrationComponent {
             .subscribe(
                 result => {
                     if (result) {
-                        this.success = true;
+                        this.isRegistrationSuccess = true;
+                        
                     }
                 }, error => {
                     console.log("error on registration", error);
-                    this.error = error;
+                    this.registrationError = error;
+                    this.isRegistrationSuccess = false;
                 })
     }
 
@@ -69,13 +75,17 @@ export class LoginRegistrationComponent {
             .subscribe((response: boolean) => {
                 console.log("response", response);
                 if (response) localStorage.setItem('isLoggedIn', 'true');
-                if (!response)
+                if (!response){
+                    console.log("isloggedIn", this.isLoginSuccess);
+                    this.isLoginSuccess = false;
                     this.route.navigate(['/login']);
+                }                
 
                 else {
                     this.authService.getToken()
                         .subscribe((token: string) => {
                             if (token.length > 0) {
+                                this.isLoginSuccess = true;
                                 console.log("accessToken response:", token)
                                 AppComponent.returned.next(true);
                                 this.route.navigate(['/customers']);
@@ -83,6 +93,9 @@ export class LoginRegistrationComponent {
                         })
                     // this.submitted.emit(user);
                 }
+            }, err => {
+                this.loginError = err
+                this.isLoginSuccess = false
             });
     }
 

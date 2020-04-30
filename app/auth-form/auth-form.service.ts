@@ -40,17 +40,32 @@ export class AuthFormService {
         return result;
     }
 
+    logout(): Observable<string> {
+        let headers = new Headers({
+            'content-type': 'application/json'
+        });
+        let options = new RequestOptions(
+            {
+                headers: headers,
+            }
+        );
+        let result = this.http.get(`${IDENTITY_SERVER}/api/Account/Logout`, options)
+            .pipe(map((response: Response) => {
+                if (response.ok) {
+                    this.user.access_token = '';
+                    this.user.isAuthenticated = false
+                    return response.text();
+                }
+            }))
+            .pipe(catchError(this.handleError));
+        return result;
+    }
+
     isAuthenticated(): boolean {
-        return this.user != null && !this.user.isAuthenticated;
+        return this.user != null && this.user.isAuthenticated ? true : false
     }
 
     getToken(): Observable<string> {
-
-        var body = JSON.stringify({
-            'grant_type': 'client_credentials',
-            'client_id': 'angular_southindianvillage_admin'
-        })
-
 
         let formData = new FormData();
         formData.append('grant_type', 'client_credentials');
@@ -85,25 +100,16 @@ export class AuthFormService {
     }
 
     private handleError(error: any) {
-
-        var applicationError = error.headers.get('Application-Error');
-
-        // either application-error in header or model error in body
-        if (applicationError) {
-            console.log(applicationError);
-            return throwError(applicationError);
+        let errorMessage = '';
+        if (error.error instanceof ErrorEvent) {
+            //client side error..
+            errorMessage = `Error:${error.error.errorMessage}`;
         }
-
-        var modelStateErrors: string = '';
-
-        // for now just concatenate the error descriptions, alternative we could simply pass the entire error response upstream
-        for (var key in error.error) {
-            if (error.error[key]) modelStateErrors += error.error[key].description + '\n';
+        else {
+            // server side error..
+            errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
         }
-
-        modelStateErrors = modelStateErrors = '' ? null : modelStateErrors;
-        console.log("model state error", modelStateErrors);
-        return throwError(modelStateErrors || 'Server error');
+        return throwError(errorMessage);
     }
 }
 
