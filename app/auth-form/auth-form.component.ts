@@ -3,7 +3,7 @@ import { User } from './auth-form.interface';
 import { AuthFormService } from './auth-form.service';
 import { Router } from '@angular/router';
 import { access } from 'fs';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'auth-form',
@@ -15,11 +15,10 @@ export class AuthFormComponent {
     constructor() {
     }
 
-    formControls = new FormGroup({
-        first: new FormControl('email'),
-        last: new FormControl('password')
-     });
-     
+    form = new FormGroup({
+        email: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required])
+    });
 
     @ViewChild('email')
     email: ElementRef;
@@ -30,11 +29,19 @@ export class AuthFormComponent {
     @Output()
     submitted: EventEmitter<User> = new EventEmitter();
 
-    @Input()
-    isRegistrationDone: EventEmitter<boolean> = new EventEmitter();
+    isFormValid: boolean
+    isFormSubmitted: boolean
 
     onSubmit(user: User) {
-        this.submitted.emit(user);        
+        if (this.form.valid) {
+            this.isFormValid = true;
+            this.isFormSubmitted = true;
+            this.submitted.emit(this.form.value);
+        }
+        else {
+            this.isFormValid = false;
+        }
+
     }
 
     ngAfterViewInit() {

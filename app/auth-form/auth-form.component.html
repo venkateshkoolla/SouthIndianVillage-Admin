@@ -1,27 +1,31 @@
 <div class="div">
-    <form class="form" (ngSubmit)="f.form.valid && onSubmit(f.form.value); f.reset()" #f="ngForm" 
-    noValidate>
+    <form class="form" [formGroup] = "form" (ngSubmit)="onSubmit($event)">
         <ng-Content select="h3"></ng-Content>
         <label>
-            Email:<input type="text" name="email"  required ngModel
-             #email="ngModel">
+            Email:<input type="text" name="email" formControlName = "email">
         </label>
-        <div *ngIf="f.submitted && email.invalid">
+        <div class="error" *ngIf= "form.get('email').hasError('required') && form.get('email').touched">
+            Email is required
+        </div>
+        <!-- <div *ngIf="f.submitted && email.invalid">
             <div *ngIf="email?.errors.required">
                 Email is required
             </div>
-        </div>
+        </div> -->
         <label>
             Password:
-            <input type="text" name="password"  minlength="6" maxlength="100" required ngModel #password="ngModel">
+            <input type="text" name="password" formControlName = "password"  minlength="6" maxlength="100" >
         </label>
-        <div *ngIf="f.submitted && password.invalid">
+        <div class="error" *ngIf= "form.get('password').hasError('required') && form.get('password').touched">
+            Password is required
+        </div>
+        <!-- <div *ngIf="f.submitted && password.invalid">
             <div *ngIf="password?.errors.required">
                 Password is required
             </div>
             <div *ngIf="password?.errors.minlength">Password must be at least 6 characters</div>
             <div *ngIf="password?.errors.maxlength">Password must be max 100 characters</div>
-        </div>
+        </div> -->
         <!-- <ng-Content select = "auth-remember"></ng-Content> -->
         <ng-Content select="h1"></ng-Content>
         <ng-Content select="button"></ng-Content>

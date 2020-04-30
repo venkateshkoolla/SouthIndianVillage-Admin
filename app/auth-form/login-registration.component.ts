@@ -11,8 +11,7 @@ import { Router } from '@angular/router'
     template: `
     <div>    
     <auth-form
-        (submitted)="createUser($event)"
-        [isRegistrationDone]=isRegistrationSuccess>
+        (submitted)="createUser($event)">
         <h3>Create account</h3>
         <h1 *ngIf= "isRegistrationSuccess">Registration success.Please login!</h1>
         <h1 *ngIf= "registrationError && !isRegistrationSuccess">registrationError</h1>
