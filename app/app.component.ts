@@ -37,7 +37,7 @@ export class AppComponent {
     this.authService.logout()
       .subscribe((returnUrl: string) => {
         console.log("LogoutResponse:", returnUrl);
-        this.route.navigate(['/home']);
+        this.route.navigate(['/login']);
       })
 
   }

@@ -1,103 +1,104 @@
-<div class = "main">
-    <div class="rowHeader" *ngIf = "rowNumber == 0" >
-      <div class = "column" >
-        <div>Status</div>        
-      </div>
-      <div class = "column" >
-        <div>FirstName</div>
-        
-      </div>
-      <div class = "column" >
-        LastName
-      </div>
-      <div class = "column" >
-        PhoneNumber
-      </div>
-      <div class = "column" >
-        PostalCode
-      </div>
-      <div class = "column" >
-        Address
-      </div>
-      <div class = "column" >
-        Comments
-      </div>
-      <div class = "column" >
-        Action
-      </div>
+<div class="main">
+  <div class="rowHeader" *ngIf="rowNumber == 0">
+    <div class="column">
+      <div>Status</div>
     </div>
+    <div class="column">
+      <div>FirstName</div>
+
+    </div>
+    <div class="column">
+      LastName
+    </div>
+    <div class="column">
+      PhoneNumber
+    </div>
+    <div class="column">
+      PostalCode
+    </div>
+    <div class="column">
+      Address
+    </div>
+    <div class="column">
+      Comments
+    </div>
+    <div class="column">
+      Action
+    </div>
+  </div>
   <div class="row">
-  <div class = "column">
-    <div>
-        <span class = "status" *ngIf = "detail.status == 1"  [class.Active] = "detail.status">  Active</span>
-        <span class = "status" *ngIf = "detail.status == 2"  [class.Enquiry] = "detail.status">  Enquiry</span>
-        <span class = "status" *ngIf = "detail.status == 3"  [class.Closed] = "detail.status">  Closed</span>
-        <span class = "status" *ngIf = "detail.status == 4"  [class.Hold] = "detail.status">  Hold</span>
-    </div>
-  </div>
-  <div class = "column">
-    <div>
-      <div *ngIf = "editing">
-        <input type = "text" [value] = "detail.firstName"
-        (input) = "OnNameChange(name.value)"#name>
-      </div>
-      <div *ngIf = "!editing">
-        {{detail.firstName}} 
-      </div>      
-    </div>      
-  </div>
-  <div class = "column" >
-    <div *ngIf ="editing">
-    <input type="text" [value] = "detail.lastName"
-      (input) = "OnLastNameChange(lastName.value)" #lastName>
-    </div>
-    <div *ngIf = "!editing">
-      {{detail.lastName}}
-    </div>
-  </div>  
-  <div class = "column" >
-    <div *ngIf = "editing">
-      <input type="text" [value] = "detail.phoneNumber"
-      (input) = "OnPhoneNumberChange(phoneNumber.value)" #phoneNumber>
-    </div>
-    <div *ngIf = "!editing">{{detail.phoneNumber}}</div>
-  </div>
-  <div class = "column" >
-    <div *ngIf = "editing">
-      <input type="text" [value] = "detail.postalCode"
-      (input) = "OnPostalCodeChange(postalCode.value)" #postalCode>
-    </div>
-    <div *ngIf = "!editing">{{detail.postalCode}}</div>
-  </div>
-  <div class = "column" >
-    <div *ngIf = "editing">
-      <input type="text" [value] = "detail.address"
-      (input) = "OnAddressChange(address.value)" #address>
-    </div>
-    <div *ngIf = "!editing">{{detail.address}}</div>
-  </div>
-  <div class = "column" >
-    <div *ngIf = "editing" >      
-        <textarea type= "text" [value] = "detail.notes"
-        (input) = "OnCustomerNotesChange(notes.value)" 
-         #notes></textarea>            
-    </div>
-  <div *ngIf= "!editing">
-    <div>
-      {{detail.notes}}
-    </div>  
-  </div>
-  </div>
-
-    <div class = "column" >
+    <div class="column">
       <div>
-      <button  mat-button color = "primary" (click)= "toggleEdit()">
-      {{editing ? 'Done' : 'Edit'}}</button>
+        <span class="status" *ngIf="detail.status == 1" [class.Active]="detail.status">
+          <span style="padding-left: 25px;">Active</span>
+        </span>
+        <span class="status" *ngIf="detail.status == 2" [class.Enquiry]="detail.status">
+          <span style="padding-left: 25px;">Enquiry</span>
+        </span>
+        <span class="status" *ngIf="detail.status == 3" [class.Closed]="detail.status">
+          <span style="padding-left: 25px;">Closed</span>
+        </span>
+        <span class="status" *ngIf="detail.status == 4" [class.Hold]="detail.status">
+          <span style="padding-left: 25px;">Hold</span>
+        </span>
+      </div>
+    </div>
+    <div class="column">
+      <div>
+        <div *ngIf="editing">
+          <input type="text" [value]="detail.firstName" (input)="OnNameChange(name.value)" #name>
+        </div>
+        <div *ngIf="!editing">
+          {{detail.firstName}}
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div *ngIf="editing">
+        <input type="text" [value]="detail.lastName" (input)="OnLastNameChange(lastName.value)" #lastName>
+      </div>
+      <div *ngIf="!editing">
+        {{detail.lastName}}
+      </div>
+    </div>
+    <div class="column">
+      <div *ngIf="editing">
+        <input type="text" [value]="detail.phoneNumber" (input)="OnPhoneNumberChange(phoneNumber.value)" #phoneNumber>
+      </div>
+      <div *ngIf="!editing">{{detail.phoneNumber}}</div>
+    </div>
+    <div class="column">
+      <div *ngIf="editing">
+        <input type="text" [value]="detail.postalCode" (input)="OnPostalCodeChange(postalCode.value)" #postalCode>
+      </div>
+      <div *ngIf="!editing">{{detail.postalCode}}</div>
+    </div>
+    <div class="column">
+      <div *ngIf="editing">
+        <input type="text" [value]="detail.address" (input)="OnAddressChange(address.value)" #address>
+      </div>
+      <div *ngIf="!editing">{{detail.address}}</div>
+    </div>
+    <div class="column">
+      <div *ngIf="editing">
+        <textarea type="text" [value]="detail.notes" (input)="OnCustomerNotesChange(notes.value)" #notes></textarea>
+      </div>
+      <div *ngIf="!editing">
+        <div>
+          {{detail.notes}}
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div>
+        <button mat-button color="primary" (click)="toggleEdit()">
+          {{editing ? 'Done' : 'Edit'}}</button>
       </div>
       <div>
-      <button mat-button (click)= "OnRemove()">
-      Remove</button>
+        <button mat-button (click)="OnRemove()">
+          Remove</button>
       </div>
-    </div>    
+    </div>
 
-</div>  
+  </div>

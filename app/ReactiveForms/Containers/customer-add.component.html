@@ -1,87 +1,88 @@
 <div>
-    <form [formGroup]= "form" (ngSubmit) = "OnSubmit($event)">
-    <div class = "subdiv">
-    <label>FirstName:
-        <input type = "text" placeholder = "" formControlName = "firstName">
-    </label>
-    <div class="error" *ngIf= "form.get('firstName').hasError('required') && form.get('firstName').touched">
-        FirstName is required
-    </div>
-    <label>LastName:
-        <input type = "text" placeholder = "" formControlName = "lastName">
-    </label>
-    <label> PhoneNumber:
-        <input type = "text" placeholder = "xxx-xxx-xxxx" formControlName = "phoneNumber">
-    </label>
-    <div class = "error" *ngIf= "form.get('phoneNumber').hasError('required') && form.get('phoneNumber').touched">
-        PhoneNumber is required
-    </div>
-    <div class = "error" *ngIf= "form.get('phoneNumber').hasError('inValidPhoneNumber') && form.get('phoneNumber').touched">
-        Invalid phone number
-    </div>
-    <div class = "error" *ngIf= "isCustomerExists && form.get('phoneNumber').touched">
-        Custmer already exists with this phone number
-    </div>
-    <label> PostalCode:
-        <input type = "text" placeholder = "" formControlName = "postalCode">
-    </label>
-    <label> Email:
-        <input type = "text" placeholder = "" formControlName = "email">
-    </label>
-    <div class = "error" *ngIf= "form.get('email').hasError('invalidEmail') 
+    <form [formGroup]="form" (ngSubmit)="OnSubmit($event)">
+        <div class="subdiv">
+            <label>FirstName:
+                <input type="text" placeholder="" formControlName="firstName">
+            </label>
+            <div class="error" *ngIf="form.get('firstName').hasError('required') 
+    && form.get('firstName').touched">
+                FirstName is required
+            </div>
+            <label>LastName:
+                <input type="text" placeholder="" formControlName="lastName">
+            </label>
+            <label> PhoneNumber:
+                <input type="text" placeholder="xxx-xxx-xxxx" formControlName="phoneNumber">
+            </label>
+            <div class="error" *ngIf="form.get('phoneNumber').hasError('required') && form.get('phoneNumber').touched">
+                PhoneNumber is required
+            </div>
+            <div class="error"
+                *ngIf="form.get('phoneNumber').hasError('inValidPhoneNumber') && form.get('phoneNumber').touched">
+                Invalid phone number
+            </div>
+            <div class="error" *ngIf="isCustomerExists && form.get('phoneNumber').touched">
+                Custmer already exists with this phone number
+            </div>
+            <label> PostalCode:
+                <input type="text" placeholder="" formControlName="postalCode" >
+            </label>
+            <label> Email:
+                <input type="text" placeholder="" formControlName="email" >
+            </label>
+            <div class="error" *ngIf="form.get('email').hasError('invalidEmail') 
     && form.get('email').touched">
-        Invalid email
-    </div>
-    <label> Address:
-        <input type = "text" placeholder = "" formControlName = "address">
-    </label>
-    
-    <label> Status:
-        <select formControlName = "status">
-            <option value="">Select status</option>
-            <option *ngFor= "let status of customerStatus" 
-                [value] = "status">
-                {{CustomerStatusLabelMapping[status]}}
-            </option>
-        </select>
-    </label>
-    <div class = "error" *ngIf= "form.get('status').hasError('required') 
+                Invalid email
+            </div>
+            <label> Address:
+                <input type="text" placeholder="" formControlName="address">
+            </label>
+            <label> Status:
+                <select formControlName="status">
+                    <option value="">Select status</option>
+                    <option *ngFor="let status of customerStatus" [value]="status">
+                        {{CustomerStatusLabelMapping[status]}}
+                    </option>
+                </select>
+            </label>
+            <div class="error" *ngIf="form.get('status').hasError('required') 
     && form.get('status').touched ">
-        Status required
-    </div>
-    <!-- <div class = "error" *ngIf= "form.get('status').hasError('ValidateStatus') 
+                Status required
+            </div>
+            <!-- <div class = "error" *ngIf= "form.get('status').hasError('ValidateStatus') 
         && form.get('status').touched ">
         Invalid status
     </div> -->
-    <label
-    > OrderType:
-        <select formControlName = "orderType">
-            <option value="">Select order type</option>
-            <option *ngFor= "let orderType of orderType"
-                [value] = "orderType">
-                {{orderType}}
-            </option>
-        </select>
-    </label>
-    <div class = "error" *ngIf= "form.get('orderType').hasError('required')
+            <label> OrderType:
+                <select formControlName="orderType">
+                    <option value="">Select order type</option>
+                    <option *ngFor="let orderType of orderType" [value]="orderType">
+                        {{orderType}}
+                    </option>
+                </select>
+            </label>
+            <div class="error" *ngIf="form.get('orderType').hasError('required')
     && form.get('orderType').touched">
-        OrderType required
-    </div>
-    <label> Notes:
-        <textarea type = "text" placeholder = "Add notes..." formControlName = "notes">
+                OrderType required
+            </div>
+            <label> Notes:
+                <textarea type="text" placeholder="Add notes..." formControlName="notes">
         </textarea>
-    </label>
-    </div>
-    <div class="buttons">
-        <span class="span" width = 100%>
-            <button type = "submit"  [disabled] = "form.invalid" >Create</button>
-        </span>
-        <span class="span">
-            <button type = "button" (click) = "OnCancelClick()">Cancel</button>
-        </span>
-            
-    </div>
-<!-- 
+            </label>
+        </div>
+        <div class="buttons">
+            <span class="span" *ngIf="editCustomer" width=100%>
+                <button type="submit" [disabled]="form.invalid">Update</button>
+            </span>
+            <span class="span" *ngIf="!editCustomer" width=100%>
+                <button type="submit" [disabled]="form.invalid">Create</button>
+            </span>
+            <span class="span">
+                <button type="button" (click)="OnCancelClick()">Cancel</button>
+            </span>
+
+        </div>
+        <!-- 
     <pre>{{form.value | json}}</pre> -->
     </form>
 </div>

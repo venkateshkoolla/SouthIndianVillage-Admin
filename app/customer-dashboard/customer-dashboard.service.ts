@@ -1,63 +1,74 @@
 import { Injectable } from '@angular/core'
-import {Http, Response, Headers, RequestOptions} from '@angular/http'
+import { Http, Response, Headers, RequestOptions } from '@angular/http'
 
 import { catchError, map } from 'rxjs/operators';
-import { Observable, throwError, of} from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { Customer } from "./models/customer.interface";
 
-const CUSTOMER_API : string = '/api/customers';
+const CUSTOMER_API: string = '/api/customers';
 
 @Injectable()
-export class CustomerDashboardService{
-    constructor(private http : Http)
-    {     
+export class CustomerDashboardService {
+
+    currentCustomer: Customer;
+
+    constructor(private http: Http) {
     }
 
-    getCustomers(): Observable<Customer[]>    {
-        return this.http
-                   .get(CUSTOMER_API)
-                   .pipe(map((response: Response) => response.json()))
+    SelectedCustomer(customer: Customer): Customer {
+        console.log("onCustomerService", customer);
+        return this.currentCustomer = customer;
     }
 
-    getCustomer(id : number): Observable<Customer>    {
+    getCustomers(): Observable<Customer[]> {
         return this.http
-                   .get(`${CUSTOMER_API}/${id}`)
-                   .pipe(map((response: Response) => response.json()))}
-    
-    updateCustomer(customer : Customer):   Observable<Customer>{
+            .get(CUSTOMER_API)
+            .pipe(map((response: Response) => response.json()))
+    }
+
+    getCustomer(id: number): Observable<Customer> {
+        return this.http
+            .get(`${CUSTOMER_API}/${id}`)
+            .pipe(map((response: Response) => response.json()))
+    }
+
+    updateCustomer(customer: Customer): Observable<Customer> {
         let headers = new Headers({
             'content-type': 'application/json'
         });
         let options = new RequestOptions(
-           {headers : headers}
+            { headers: headers }
         );
-                return this.http
-                   .put(`${CUSTOMER_API}/${customer.id}`, customer, options)
-                   .pipe(map((response: Response) => response.json()))                                     
-    }
 
-    addCustomer(customer: Customer): Observable<Customer>{
+            console.log("Update customer:", customer);
+            console.log("Update customer id:", customer.id);
+
         return this.http
-                   .post(`${CUSTOMER_API}`, customer)
-                   .pipe(map((response: Response) => response.json()))                                     
+            .put(`${CUSTOMER_API}/${customer.id}`, customer, options)
+            .pipe(map((response: Response) => response.json()))
     }
 
-    removeCustomer(id : number):   Observable<Customer>{
+    addCustomer(customer: Customer): Observable<Customer> {
         return this.http
-                   .delete(`${CUSTOMER_API}/${id}`)
-                   .pipe(map((response: Response) => response.json()))
+            .post(`${CUSTOMER_API}`, customer)
+            .pipe(map((response: Response) => response.json()))
     }
 
-    checkCustomerExists(phoneNumber: string) : Observable<boolean>{
+    removeCustomer(id: number): Observable<Customer> {
+        return this.http
+            .delete(`${CUSTOMER_API}/${id}`)
+            .pipe(map((response: Response) => response.json()))
+    }
+
+    checkCustomerExists(phoneNumber: string): Observable<boolean> {
         let search = new URLSearchParams();
-        
-       return this.http.get(`${CUSTOMER_API}?phoneNumber=${phoneNumber}`)
+
+        return this.http.get(`${CUSTOMER_API}?phoneNumber=${phoneNumber}`)
             .pipe(map((response: Response) => response.json()))
             .pipe(map((response: any[]) => !!response.length))
-            .pipe(catchError(err => 
-                {
-                    console.log('Handling error locally and rethrowing it...', err);
-                    return throwError(err);
-                }))
+            .pipe(catchError(err => {
+                console.log('Handling error locally and rethrowing it...', err);
+                return throwError(err);
+            }))
     }
 }

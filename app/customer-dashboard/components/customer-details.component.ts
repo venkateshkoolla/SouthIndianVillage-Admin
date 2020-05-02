@@ -1,70 +1,70 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core'
+import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { Customer } from '../models/customer.interface'
+import { Router } from '@angular/router'
+import { CustomerAddComponent } from '../../ReactiveForms/Containers/customer-add.component';
+import { CustomerDashboardService } from '../customer-dashboard.service';
 
 @Component({
-    selector : 'customer-details',
-    styleUrls : ['customer-details.component.scss'],
-    templateUrl : 'customer-details.component.html'
+  selector: 'customer-details',
+  styleUrls: ['customer-details.component.scss'],
+  templateUrl: 'customer-details.component.html'
 })
 
-export class CustomerDetailsComponent{
-    
+export class CustomerDetailsComponent {
+
   popoverTitle = 'Popover title';
   popoverMessage = 'Popover description';
   confirmClicked = false;
   cancelClicked = false;
-  
-    @Input()
-    detail : Customer
 
-    @Input()
-    rowNumber : number;
+  @Input()
+  detail: Customer
 
-    @Output()
-    remove : EventEmitter<any> = new EventEmitter();
+  @Input()
+  rowNumber: number;
 
-    
-    @Output()
-    edit : EventEmitter<any> = new EventEmitter();
+  @Output()
+  remove: EventEmitter<any> = new EventEmitter();
 
+  @Output()
+  edit: EventEmitter<any> = new EventEmitter();
 
-    editing : boolean = false;
-    constructor(){
+  editing: boolean = false;
+  constructor(private route: Router, private customerDashboardService: CustomerDashboardService) {
 
-    }
-    OnNameChange(value: string)
-    {
-      this.detail.firstName = value;
-    }
+  }
+  OnNameChange(value: string) {
+    this.detail.firstName = value;
+  }
 
-    OnLastNameChange(value: string){
-      this.detail.lastName = value;
-    }
-    
-    OnPhoneNumberChange(value : string){
-      this.detail.phoneNumber = value;
-    }
-    
-    OnPostalCodeChange(value : string){
-      this.detail.phoneNumber = value;
-    }
+  OnLastNameChange(value: string) {
+    this.detail.lastName = value;
+  }
 
-    OnAddressChange(value : string){
-      this.detail.address = value;
-    }
+  OnPhoneNumberChange(value: string) {
+    this.detail.phoneNumber = value;
+  }
 
-    OnCustomerNotesChange(value: string){
-      this.detail.notes= value;
-    }
+  OnPostalCodeChange(value: string) {
+    this.detail.phoneNumber = value;
+  }
 
-    toggleEdit(){
-      if(this.editing){
-        this.edit.emit(this.detail);
-      }
-      this.editing = !this.editing;   
-    }
+  OnAddressChange(value: string) {
+    this.detail.address = value;
+  }
 
-    OnRemove(){
-      this.remove.emit(this.detail);
-    }
+  OnCustomerNotesChange(value: string) {
+    this.detail.notes = value;
+  }
+
+  toggleEdit() {
+    this.edit.emit(this.detail);
+    this.customerDashboardService.SelectedCustomer(this.detail);
+    this.route.navigate(['/AddCustomer']);
+  }
+
+  OnRemove() {
+    this.remove.emit(this.detail);
+  }
+
 }
